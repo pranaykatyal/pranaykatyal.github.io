@@ -90,39 +90,94 @@ function createParticles() {
     const hero = document.querySelector('.hero');
     if (!hero) return;
     
-    const particleCount = 30;
+    const particleCount = 50;
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+    `;
+    hero.appendChild(canvas);
     
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.cssText = `
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(157, 78, 221, 0.3);
-            border-radius: 50%;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation: float ${5 + Math.random() * 10}s infinite ease-in-out;
-        `;
-        hero.appendChild(particle);
+    const ctx = canvas.getContext('2d');
+    canvas.width = hero.offsetWidth;
+    canvas.height = hero.offsetHeight;
+    
+    const particles = [];
+    
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 1;
+            this.speedX = Math.random() * 0.5 - 0.25;
+            this.speedY = Math.random() * 0.5 - 0.25;
+            this.opacity = Math.random() * 0.5 + 0.2;
+            this.color = Math.random() > 0.5 ? 'rgba(157, 78, 221,' : 'rgba(192, 192, 192,';
+        }
+        
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            
+            if (this.x > canvas.width) this.x = 0;
+            if (this.x < 0) this.x = canvas.width;
+            if (this.y > canvas.height) this.y = 0;
+            if (this.y < 0) this.y = canvas.height;
+        }
+        
+        draw() {
+            ctx.fillStyle = this.color + this.opacity + ')';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
     }
     
-    // Add CSS animation for particles
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0);
-                opacity: 0;
-            }
-            50% {
-                transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px);
-                opacity: 0.5;
-            }
-        }
-    `;
-    document.head.appendChild(style);
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        
+        // Draw connections between nearby particles
+        particles.forEach((particleA, indexA) => {
+            particles.slice(indexA + 1).forEach(particleB => {
+                const dx = particleA.x - particleB.x;
+                const dy = particleA.y - particleB.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    ctx.strokeStyle = `rgba(157, 78, 221, ${0.1 * (1 - distance / 100)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(particleA.x, particleA.y);
+                    ctx.lineTo(particleB.x, particleB.y);
+                    ctx.stroke();
+                }
+            });
+        });
+        
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // Resize canvas on window resize
+    window.addEventListener('resize', () => {
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+    });
 }
 
 // Initialize particles
