@@ -615,17 +615,6 @@ body > * {
     transform: translateX(5px);
 }
 
-.contact-link-download {
-    background: linear-gradient(135deg, rgba(157, 78, 221, 0.1) 0%, rgba(123, 44, 191, 0.1) 100%);
-    border-color: var(--color-accent-purple);
-}
-
-.contact-link-download:hover {
-    background: linear-gradient(135deg, rgba(157, 78, 221, 0.2) 0%, rgba(123, 44, 191, 0.2) 100%);
-    border-color: var(--color-accent-purple);
-    transform: translateX(5px);
-}
-
 .contact-link svg {
     flex-shrink: 0;
 }
