@@ -36,14 +36,14 @@
                     </svg>
                     GitHub
                 </a>
-                <a href="https://www.linkedin.com/in/pranay-katyal/" target="_blank" class="btn btn-secondary">
+                <a href="https://www.linkedin.com/in/pranay-katyal/" target="_blank" class="btn btn-primary">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                     </svg>
                     LinkedIn
                 </a>
-                <a href="Pranay_Katyal_CV.pdf" download class="btn btn-cv">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <a href="Pranay_Katyal_CV.pdf" download class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                         <polyline points="7 10 12 15 17 10"></polyline>
                         <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -163,69 +163,180 @@
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <h3>Async vs Sync Consensus for Multi-Agent Formation Control</h3>
-                    <p class="project-date">August 2025 – December 2025</p>
-                    <p>Developed distributed multi-agent control system comparing synchronous and asynchronous consensus protocols for 5-drone pentagon formation with Graph-Based Control Barrier Functions (GCBFs).</p>
-                    <ul class="project-highlights">
-                        <li>Implemented GCBF-based collision avoidance with local QP optimization</li>
-                        <li>Achieved O(n·k) complexity vs O(n²) centralized approaches</li>
-                        <li>50% lower control effort with asynchronous protocol at alpha=0.7</li>
-                    </ul>
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="3"/>
+                                <circle cx="19" cy="5" r="2"/>
+                                <circle cx="5" cy="5" r="2"/>
+                                <circle cx="19" cy="19" r="2"/>
+                                <circle cx="5" cy="19" r="2"/>
+                                <line x1="12" y1="9" x2="12" y2="15"/>
+                                <line x1="9" y1="12" x2="6.5" y2="7"/>
+                                <line x1="15" y1="12" x2="17.5" y2="7"/>
+                                <line x1="9" y1="12" x2="6.5" y2="17"/>
+                                <line x1="15" y1="12" x2="17.5" y2="17"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Async vs Sync Consensus for Multi-Agent Formation Control</h3>
+                        <p class="project-date">August 2025 – December 2025</p>
+                        <p>Developed distributed multi-agent control system comparing synchronous and asynchronous consensus protocols for 5-drone pentagon formation with Graph-Based Control Barrier Functions (GCBFs).</p>
+                        <ul class="project-highlights">
+                            <li>Implemented GCBF-based collision avoidance with local QP optimization</li>
+                            <li>Achieved O(n·k) complexity vs O(n²) centralized approaches</li>
+                            <li>50% lower control effort with asynchronous protocol at alpha=0.7</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">Multi-Agent Systems</span>
+                            <span class="tag">Control Barrier Functions</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="project-card">
-                    <h3>Autonomous Navigation through Windows using Optical Flow</h3>
-                    <p class="project-date">November 2025 – December 2025</p>
-                    <p>Developed modular navigation architecture combining RAFT optical flow with TS2P algorithm for bidirectional course traversal through gaps.</p>
-                    <ul class="project-highlights">
-                        <li>3rd place in class with complete bidirectional navigation</li>
-                        <li>0.729s inference time with pure RGB optical flow</li>
-                        <li>Robust gap detection without depth data</li>
-                    </ul>
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="7" height="7"/>
+                                <rect x="14" y="3" width="7" height="7"/>
+                                <rect x="14" y="14" width="7" height="7"/>
+                                <rect x="3" y="14" width="7" height="7"/>
+                                <line x1="10" y1="6.5" x2="14" y2="6.5"/>
+                                <line x1="10" y1="17.5" x2="14" y2="17.5"/>
+                                <line x1="6.5" y1="10" x2="6.5" y2="14"/>
+                                <line x1="17.5" y1="10" x2="17.5" y2="14"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Autonomous Navigation through Windows using Optical Flow</h3>
+                        <p class="project-date">November 2025 – December 2025</p>
+                        <p>Developed modular navigation architecture combining RAFT optical flow with TS2P algorithm for bidirectional course traversal through gaps.</p>
+                        <ul class="project-highlights">
+                            <li>3rd place in class with complete bidirectional navigation</li>
+                            <li>0.729s inference time with pure RGB optical flow</li>
+                            <li>Robust gap detection without depth data</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">Computer Vision</span>
+                            <span class="tag">Optical Flow</span>
+                            <span class="tag">RAFT</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="project-card">
-                    <h3>Optical Flow-Based Gap Detection and Navigation</h3>
-                    <p class="project-date">October 2025 – November 2025</p>
-                    <p>Implemented RAFT optical flow neural network for texture-invariant gap detection using motion parallax.</p>
-                    <ul class="project-highlights">
-                        <li>89-95% IoU segmentation accuracy</li>
-                        <li>40ms inference rate (25Hz) processing</li>
-                        <li>35 seconds navigation completion with 10px accuracy</li>
-                    </ul>
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Optical Flow-Based Gap Detection and Navigation</h3>
+                        <p class="project-date">October 2025 – November 2025</p>
+                        <p>Implemented RAFT optical flow neural network for texture-invariant gap detection using motion parallax.</p>
+                        <ul class="project-highlights">
+                            <li>89-95% IoU segmentation accuracy</li>
+                            <li>40ms inference rate (25Hz) processing</li>
+                            <li>35 seconds navigation completion with 10px accuracy</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">Deep Learning</span>
+                            <span class="tag">Neural Networks</span>
+                            <span class="tag">Real-time</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="project-card">
-                    <h3>Deep Learning Window Detection for Drone Navigation</h3>
-                    <p class="project-date">September 2025 – October 2025</p>
-                    <p>Developed U-Net semantic segmentation model trained on 10,000 Blender-generated synthetic images for window frame detection.</p>
-                    <ul class="project-highlights">
-                        <li>1cm goal-reaching accuracy</li>
-                        <li>21ms inference time with visual servoing pipeline</li>
-                        <li>Completed 3-window course in 35 seconds</li>
-                    </ul>
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                                <line x1="15" y1="9" x2="9" y2="15"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Deep Learning Window Detection for Drone Navigation</h3>
+                        <p class="project-date">September 2025 – October 2025</p>
+                        <p>Developed U-Net semantic segmentation model trained on 10,000 Blender-generated synthetic images for window frame detection.</p>
+                        <ul class="project-highlights">
+                            <li>1cm goal-reaching accuracy</li>
+                            <li>21ms inference time with visual servoing pipeline</li>
+                            <li>Completed 3-window course in 35 seconds</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">U-Net</span>
+                            <span class="tag">Semantic Segmentation</span>
+                            <span class="tag">Blender</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="project-card">
-                    <h3>Quadrotor Path Planning and Trajectory Optimization</h3>
-                    <p class="project-date">September 2025 – October 2025</p>
-                    <p>Implemented RRT* path planning with 7th-order polynomial minimum-snap trajectory generation.</p>
-                    <ul class="project-highlights">
-                        <li>79% waypoint reduction and 94.7% path efficiency</li>
-                        <li>5mm final positioning accuracy</li>
-                        <li>1.5cm average tracking error with cascaded PID control</li>
-                    </ul>
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Quadrotor Path Planning and Trajectory Optimization</h3>
+                        <p class="project-date">September 2025 – October 2025</p>
+                        <p>Implemented RRT* path planning with 7th-order polynomial minimum-snap trajectory generation.</p>
+                        <ul class="project-highlights">
+                            <li>79% waypoint reduction and 94.7% path efficiency</li>
+                            <li>5mm final positioning accuracy</li>
+                            <li>1.5cm average tracking error with cascaded PID control</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">Path Planning</span>
+                            <span class="tag">RRT*</span>
+                            <span class="tag">Control Systems</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="project-card">
-                    <h3>Control of 4-DoF OpenManipulatorX Robotic Arm</h3>
-                    <p class="project-date">November 2024 – December 2024</p>
-                    <p>Led team development of position and velocity kinematics for 4-DOF robotic arm using ROS2.</p>
-                    <ul class="project-highlights">
-                        <li>97.5% control accuracy achieved</li>
-                        <li>Integrated Dynamixel motors with optimized PD controller</li>
-                        <li>Repeatable, high-precision motions in complex tasks</li>
-                    </ul>
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <line x1="12" y1="2" x2="12" y2="6"/>
+                                <line x1="12" y1="18" x2="12" y2="22"/>
+                                <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
+                                <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+                                <line x1="2" y1="12" x2="6" y2="12"/>
+                                <line x1="18" y1="12" x2="22" y2="12"/>
+                                <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
+                                <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Control of 4-DoF OpenManipulatorX Robotic Arm</h3>
+                        <p class="project-date">November 2024 – December 2024</p>
+                        <p>Led team development of position and velocity kinematics for 4-DOF robotic arm using ROS2.</p>
+                        <ul class="project-highlights">
+                            <li>97.5% control accuracy achieved</li>
+                            <li>Integrated Dynamixel motors with optimized PD controller</li>
+                            <li>Repeatable, high-precision motions in complex tasks</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">ROS2</span>
+                            <span class="tag">Kinematics</span>
+                            <span class="tag">Robotics</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
