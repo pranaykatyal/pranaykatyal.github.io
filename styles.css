@@ -309,10 +309,12 @@ body > * {
 /* Sections */
 .section {
     padding: 6rem 0;
+    background: transparent;
 }
 
 .section-alt {
-    background-color: var(--color-bg-secondary);
+    background: rgba(26, 26, 26, 0.4);
+    backdrop-filter: blur(10px);
 }
 
 .section-title {
@@ -470,7 +472,8 @@ body > * {
 }
 
 .skill-category {
-    background-color: var(--color-bg-tertiary);
+    background-color: rgba(42, 42, 42, 0.8);
+    backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid var(--color-border);
@@ -539,7 +542,8 @@ body > * {
 }
 
 .project-card {
-    background-color: var(--color-bg-tertiary);
+    background-color: rgba(42, 42, 42, 0.8);
+    backdrop-filter: blur(10px);
     border-radius: 12px;
     border: 1px solid var(--color-border);
     transition: all var(--transition-speed);
@@ -693,7 +697,8 @@ body > * {
     font-size: 1.1rem;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
-    background-color: var(--color-bg-tertiary);
+    background-color: rgba(42, 42, 42, 0.8);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--color-border);
     transition: all var(--transition-speed);
     min-width: 300px;
