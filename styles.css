@@ -183,6 +183,18 @@ body {
     transform: translateY(-2px);
 }
 
+.btn-cv {
+    background: linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-accent-purple-dark) 100%);
+    color: var(--color-text-primary);
+    border-color: var(--color-accent-purple);
+}
+
+.btn-cv:hover {
+    background: linear-gradient(135deg, var(--color-accent-purple-dark) 0%, #5a189a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(157, 78, 221, 0.4);
+}
+
 /* Sections */
 .section {
     padding: 6rem 0;
@@ -464,6 +476,17 @@ body {
 .contact-link:hover {
     border-color: var(--color-accent-purple);
     background-color: var(--color-bg-primary);
+    transform: translateX(5px);
+}
+
+.contact-link-download {
+    background: linear-gradient(135deg, rgba(157, 78, 221, 0.1) 0%, rgba(123, 44, 191, 0.1) 100%);
+    border-color: var(--color-accent-purple);
+}
+
+.contact-link-download:hover {
+    background: linear-gradient(135deg, rgba(157, 78, 221, 0.2) 0%, rgba(123, 44, 191, 0.2) 100%);
+    border-color: var(--color-accent-purple);
     transform: translateX(5px);
 }
 
