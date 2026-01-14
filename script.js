@@ -90,7 +90,7 @@ function createParticles() {
     const hero = document.querySelector('.hero');
     if (!hero) return;
     
-    const particleCount = 50;
+    const particleCount = 60; // Increased from 50
     const canvas = document.createElement('canvas');
     canvas.style.cssText = `
         position: absolute;
@@ -113,10 +113,10 @@ function createParticles() {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = Math.random() * 0.5 - 0.25;
-            this.speedY = Math.random() * 0.5 - 0.25;
-            this.opacity = Math.random() * 0.5 + 0.2;
+            this.size = Math.random() * 2.5 + 1; // Increased size
+            this.speedX = Math.random() * 0.6 - 0.3; // Increased speed
+            this.speedY = Math.random() * 0.6 - 0.3;
+            this.opacity = Math.random() * 0.6 + 0.3; // Increased opacity
             this.color = Math.random() > 0.5 ? 'rgba(157, 78, 221,' : 'rgba(192, 192, 192,';
         }
         
@@ -157,9 +157,9 @@ function createParticles() {
                 const dy = particleA.y - particleB.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
-                if (distance < 100) {
-                    ctx.strokeStyle = `rgba(157, 78, 221, ${0.1 * (1 - distance / 100)})`;
-                    ctx.lineWidth = 0.5;
+                if (distance < 120) { // Increased from 100
+                    ctx.strokeStyle = `rgba(157, 78, 221, ${0.15 * (1 - distance / 120)})`; // Increased opacity
+                    ctx.lineWidth = 0.7; // Increased from 0.5
                     ctx.beginPath();
                     ctx.moveTo(particleA.x, particleA.y);
                     ctx.lineTo(particleB.x, particleB.y);
