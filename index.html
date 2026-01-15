@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Pranay Katyal - Robotics Engineer</title>
-    <link rel="stylesheet" href="styles.css?v=1.5">
+    <link rel="stylesheet" href="styles.css?v=1.8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -143,8 +143,42 @@
 
     <section id="projects" class="section section-alt">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
+            <h2 class="section-title">University Projects</h2>
             <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="7" height="7"/>
+                                <rect x="14" y="3" width="7" height="7"/>
+                                <rect x="14" y="14" width="7" height="7"/>
+                                <rect x="3" y="14" width="7" height="7"/>
+                                <line x1="10" y1="6.5" x2="14" y2="6.5"/>
+                                <line x1="10" y1="17.5" x2="14" y2="17.5"/>
+                                <line x1="6.5" y1="10" x2="6.5" y2="14"/>
+                                <line x1="17.5" y1="10" x2="17.5" y2="14"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Autonomous Navigation through Windows using Optical Flow</h3>
+                        <p class="project-date">November 2025 – December 2025</p>
+                        <p>Developed modular three-phase navigation architecture combining RAFT optical flow with TS2P algorithm for bidirectional course traversal through gaps.</p>
+                        <ul class="project-highlights">
+                            <li>3rd place in class with complete bidirectional navigation</li>
+                            <li>0.729s inference time with pure RGB optical flow</li>
+                            <li>Robust gap detection without depth data</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">Computer Vision</span>
+                            <span class="tag">Optical Flow</span>
+                            <span class="tag">RAFT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
                 <div class="project-card">
                     <div class="project-image">
                         <div class="project-icon">
@@ -165,20 +199,43 @@
                     <div class="project-content">
                         <h3>Async vs Sync Consensus for Multi-Agent Formation Control</h3>
                         <p class="project-date">August 2025 – December 2025</p>
-                        <p>Developed distributed multi-agent control system comparing synchronous and asynchronous consensus protocols for 5-drone pentagon formation with Graph-Based Control Barrier Functions (GCBFs).</p>
+                        <p>Developed distributed multi-agent control system comparing synchronous and asynchronous consensus protocols for 5-drone pentagon formation with Graph-Based Control Barrier Functions.</p>
                         <ul class="project-highlights">
-                            <li>Implemented GCBF-based collision avoidance with local QP optimization</li>
                             <li>Achieved O(n·k) complexity vs O(n²) centralized approaches</li>
-                            <li>50% lower control effort with asynchronous protocol at alpha=0.7</li>
+                            <li>50% lower control effort with asynchronous protocol</li>
+                            <li>Zero CBF violations maintaining 2.0m safety distance</li>
                         </ul>
                         <div class="project-tags">
                             <span class="tag">Multi-Agent Systems</span>
-                            <span class="tag">Control Barrier Functions</span>
+                            <span class="tag">GCBFs</span>
                             <span class="tag">Python</span>
                         </div>
                     </div>
                 </div>
 
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image project-image-actual">
+                        <img src="images/comparison_01_sample_0054.png" alt="Monocular Depth Estimation" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3>Monocular Depth Estimation with Transfer Learning</h3>
+                        <p class="project-date">November 2025 – December 2025</p>
+                        <p>Reproduced M4Depth temporal depth estimation framework fusing sequential camera images with GPS/IMU data.</p>
+                        <ul class="project-highlights">
+                            <li>2.65m RMSE and 98.6% accuracy on synthetic data</li>
+                            <li>Trained on 550 synthetic images after 71 epochs</li>
+                            <li>Discovered critical pose format incompatibility</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">Depth Estimation</span>
+                            <span class="tag">Transfer Learning</span>
+                            <span class="tag">Computer Vision</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
                 <div class="project-card">
                     <div class="project-image">
                         <div class="project-icon">
@@ -187,37 +244,6 @@
                                 <rect x="14" y="3" width="7" height="7"/>
                                 <rect x="14" y="14" width="7" height="7"/>
                                 <rect x="3" y="14" width="7" height="7"/>
-                                <line x1="10" y1="6.5" x2="14" y2="6.5"/>
-                                <line x1="10" y1="17.5" x2="14" y2="17.5"/>
-                                <line x1="6.5" y1="10" x2="6.5" y2="14"/>
-                                <line x1="17.5" y1="10" x2="17.5" y2="14"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Autonomous Navigation through Windows using Optical Flow</h3>
-                        <p class="project-date">November 2025 – December 2025</p>
-                        <p>Developed modular navigation architecture combining RAFT optical flow with TS2P algorithm for bidirectional course traversal through gaps.</p>
-                        <ul class="project-highlights">
-                            <li>3rd place in class with complete bidirectional navigation</li>
-                            <li>0.729s inference time with pure RGB optical flow</li>
-                            <li>Robust gap detection without depth data</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">Computer Vision</span>
-                            <span class="tag">Optical Flow</span>
-                            <span class="tag">RAFT</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                                <line x1="12" y1="22.08" x2="12" y2="12"/>
                             </svg>
                         </div>
                     </div>
@@ -228,7 +254,7 @@
                         <ul class="project-highlights">
                             <li>89-95% IoU segmentation accuracy</li>
                             <li>40ms inference rate (25Hz) processing</li>
-                            <li>35 seconds navigation completion with 10px accuracy</li>
+                            <li>35 seconds navigation with 10px accuracy</li>
                         </ul>
                         <div class="project-tags">
                             <span class="tag">Deep Learning</span>
@@ -238,6 +264,29 @@
                     </div>
                 </div>
 
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-image project-image-actual">
+                        <img src="images/3dduybins.jpeg" alt="3D Dubins Trajectory" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3>LSTM-Based 3D Dubins Trajectory Prediction</h3>
+                        <p class="project-date">October 2025 – November 2025</p>
+                        <p>Developed rotation-invariant LSTM architecture for 3D Dubins airplane path prediction using body-frame representation.</p>
+                        <ul class="project-highlights">
+                            <li>Trained on 1,053,091 synthetic trajectories</li>
+                            <li>5.52m average error (~2% accuracy)</li>
+                            <li>3-layer LSTM with 256 hidden units</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">LSTM</span>
+                            <span class="tag">Trajectory Prediction</span>
+                            <span class="tag">Deep Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
                 <div class="project-card">
                     <div class="project-image">
                         <div class="project-icon">
@@ -251,11 +300,11 @@
                     <div class="project-content">
                         <h3>Deep Learning Window Detection for Drone Navigation</h3>
                         <p class="project-date">September 2025 – October 2025</p>
-                        <p>Developed U-Net semantic segmentation model trained on 10,000 Blender-generated synthetic images for window frame detection.</p>
+                        <p>Developed U-Net semantic segmentation model trained on 10,000 Blender-generated synthetic images.</p>
                         <ul class="project-highlights">
                             <li>1cm goal-reaching accuracy</li>
-                            <li>21ms inference time with visual servoing pipeline</li>
-                            <li>Completed 3-window course in 35 seconds</li>
+                            <li>21ms inference time with visual servoing</li>
+                            <li>35 seconds to complete 3-window course</li>
                         </ul>
                         <div class="project-tags">
                             <span class="tag">U-Net</span>
@@ -265,6 +314,7 @@
                     </div>
                 </div>
 
+                <!-- Project 7 -->
                 <div class="project-card">
                     <div class="project-image">
                         <div class="project-icon">
@@ -278,9 +328,9 @@
                         <p class="project-date">September 2025 – October 2025</p>
                         <p>Implemented RRT* path planning with 7th-order polynomial minimum-snap trajectory generation.</p>
                         <ul class="project-highlights">
-                            <li>79% waypoint reduction and 94.7% path efficiency</li>
+                            <li>79% waypoint reduction, 94.7% path efficiency</li>
                             <li>5mm final positioning accuracy</li>
-                            <li>1.5cm average tracking error with cascaded PID control</li>
+                            <li>1.5cm average tracking error with PID control</li>
                         </ul>
                         <div class="project-tags">
                             <span class="tag">Path Planning</span>
@@ -290,6 +340,111 @@
                     </div>
                 </div>
 
+                <!-- Project 8 -->
+                <div class="project-card">
+                    <div class="project-image project-image-actual">
+                        <img src="images/predictions.png" alt="Vehicle Classification" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3>Vehicle Classification via ResNet18 Transfer Learning</h3>
+                        <p class="project-date">September 2025 – October 2025</p>
+                        <p>Applied two-phase transfer learning with pretrained ResNet18 for 10-class vehicle classification.</p>
+                        <ul class="project-highlights">
+                            <li>96.0% validation accuracy achieved</li>
+                            <li>Minimal overfitting (95.4% training, 96.0% validation)</li>
+                            <li>Training completed in 22 minutes on RTX 4080</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">ResNet18</span>
+                            <span class="tag">Transfer Learning</span>
+                            <span class="tag">CNN</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 9 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="12"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Unscented Kalman Filter for Attitude Estimation</h3>
+                        <p class="project-date">August 2025 – September 2025</p>
+                        <p>Implemented UKF for nonlinear attitude estimation using quaternion representation and sigma point generation.</p>
+                        <ul class="project-highlights">
+                            <li>Superior performance over Complementary filters</li>
+                            <li>Quaternion constraint handling (unit norm)</li>
+                            <li>6D/7D state space transformations</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">Kalman Filter</span>
+                            <span class="tag">State Estimation</span>
+                            <span class="tag">Sensor Fusion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 10 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Neural Network Control Allocator for Ship Thrusters</h3>
+                        <p class="project-date">August 2025 – September 2025</p>
+                        <p>Implemented LSTM encoder-decoder architecture replacing computationally expensive Sequential Quadratic Programming.</p>
+                        <ul class="project-highlights">
+                            <li>Trained on 1 million synthetic samples</li>
+                            <li>Less than 6% error for sway/yaw commands</li>
+                            <li>Fast adaptable control allocation</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">LSTM</span>
+                            <span class="tag">Control Allocation</span>
+                            <span class="tag">Neural Networks</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 11 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>IMU Sensor Fusion for Orientation Tracking</h3>
+                        <p class="project-date">August 2025</p>
+                        <p>Implemented attitude estimation using gyroscope integration, accelerometer-based tilt estimation, and complementary filter fusion.</p>
+                        <ul class="project-highlights">
+                            <li>SLERP for timestamp synchronization</li>
+                            <li>Coordinate frame transformations (ZYX Euler)</li>
+                            <li>Bias correction and drift mitigation</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">IMU</span>
+                            <span class="tag">Sensor Fusion</span>
+                            <span class="tag">Orientation Tracking</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 12 -->
                 <div class="project-card">
                     <div class="project-image">
                         <div class="project-icon">
@@ -300,8 +455,6 @@
                                 <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
                                 <line x1="2" y1="12" x2="6" y2="12"/>
                                 <line x1="18" y1="12" x2="22" y2="12"/>
-                                <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
-                                <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
                             </svg>
                         </div>
                     </div>
@@ -311,13 +464,123 @@
                         <p>Led team development of position and velocity kinematics for 4-DOF robotic arm using ROS2.</p>
                         <ul class="project-highlights">
                             <li>97.5% control accuracy achieved</li>
-                            <li>Integrated Dynamixel motors with optimized PD controller</li>
-                            <li>Repeatable, high-precision motions in complex tasks</li>
+                            <li>Integrated Dynamixel motors with PD controller</li>
+                            <li>Repeatable, high-precision motions</li>
                         </ul>
                         <div class="project-tags">
                             <span class="tag">ROS2</span>
                             <span class="tag">Kinematics</span>
                             <span class="tag">Robotics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 13 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                <polyline points="9 22 9 12 15 12 15 22"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Quadrotor Controller Implementation (CrazyFlie 2.0)</h3>
+                        <p class="project-date">November 2024 – December 2024</p>
+                        <p>Designed and tuned PD and LQR controllers for the CrazyFlie 2.0 quadcopter using MATLAB.</p>
+                        <ul class="project-highlights">
+                            <li>10-second path tracking demonstrated</li>
+                            <li>LQR 17.28% faster than PD controllers</li>
+                            <li>Enhanced control stability and precision</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">LQR</span>
+                            <span class="tag">PID Control</span>
+                            <span class="tag">MATLAB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 14 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="17 8 12 3 7 8"/>
+                                <line x1="12" y1="3" x2="12" y2="15"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Benchmarking Advanced IK Algorithms</h3>
+                        <p class="project-date">March 2025 – May 2025</p>
+                        <p>Implemented multiple inverse kinematics algorithms and benchmarked modern methods on 6 DoF Kinova Gen3 arm.</p>
+                        <ul class="project-highlights">
+                            <li>Product of Exponentials for forward kinematics</li>
+                            <li>SVDDLS, IDLS, PSO algorithm comparison</li>
+                            <li>Real-time VR control integration</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">Inverse Kinematics</span>
+                            <span class="tag">MATLAB</span>
+                            <span class="tag">VR Integration</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 15 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Chance-Constrained RRT Motion Planning</h3>
+                        <p class="project-date">March 2025 – May 2025</p>
+                        <p>Integrated Chance-Constrained RRT algorithm with OMPL library in C++ for robust path planning.</p>
+                        <ul class="project-highlights">
+                            <li>Sub-second planning times achieved</li>
+                            <li>Docker for reproducible development</li>
+                            <li>Probabilistic safety constraint evaluation</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">Motion Planning</span>
+                            <span class="tag">C++</span>
+                            <span class="tag">OMPL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 16 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                                <line x1="15" y1="9" x2="15.01" y2="9"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Design and Testing of Robotic Dog (SPOT)</h3>
+                        <p class="project-date">January 2024 – March 2024</p>
+                        <p>Engineered and tested a robotic dog using Fusion 360 for design and ANSYS for load analysis.</p>
+                        <ul class="project-highlights">
+                            <li>Withstands static loads up to 1000g</li>
+                            <li>Structural performance optimization</li>
+                            <li>Reliable performance in various scenarios</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">Fusion 360</span>
+                            <span class="tag">ANSYS</span>
+                            <span class="tag">Mechanical Design</span>
                         </div>
                     </div>
                 </div>
