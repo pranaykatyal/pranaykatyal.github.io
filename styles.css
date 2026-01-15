@@ -686,6 +686,32 @@ body > * {
     border-color: var(--color-accent-purple);
 }
 
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-accent-purple-dark) 100%);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all var(--transition-speed);
+    border: 1px solid transparent;
+}
+
+.project-link:hover {
+    background: linear-gradient(135deg, var(--color-accent-purple-dark) 0%, #5a189a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
+}
+
+.project-link svg {
+    flex-shrink: 0;
+}
+
 /* Contact Section */
 .contact-content {
     max-width: 700px;
