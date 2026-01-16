@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Pranay Katyal - Robotics Engineer</title>
-    <link rel="stylesheet" href="styles.css?v=2.5">
+    <link rel="stylesheet" href="styles.css?v=2.6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -90,107 +90,65 @@
     <section id="skills" class="section">
         <div class="container">
             <h2 class="section-title">Skills</h2>
-            <div class="skills-hexagon-container">
-                <!-- Center Hexagon -->
-                <div class="hex-center">
-                    <div class="hexagon hex-main">
-                        <div class="hex-content">
-                            <span class="hex-title">Skills</span>
-                        </div>
+            <div class="honeycomb-container">
+                <div class="honeycomb">
+                    <!-- Row 1 -->
+                    <div class="hex-row row-1">
+                        <div class="hex color-prog"><span>Python</span></div>
+                        <div class="hex color-prog"><span>C++</span></div>
+                        <div class="hex color-auto"><span>CBF/GCBF</span></div>
+                        <div class="hex color-auto"><span>PID/LQR</span></div>
                     </div>
-                </div>
-
-                <!-- Level 2: Category Hexagons (6 around center) -->
-                <div class="hex-categories">
-                    <!-- Top: Programming -->
-                    <div class="hex-category-group hex-group-1">
-                        <div class="hexagon hex-category">
-                            <div class="hex-content">
-                                <h4>Programming<br>& Tools</h4>
-                            </div>
-                        </div>
-                        <!-- Level 3: Individual Skills -->
-                        <div class="hex-skills-branch">
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>Python</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>C++</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>MATLAB</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>ROS2</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>Docker</span></div></div>
-                        </div>
+                    
+                    <!-- Row 2 -->
+                    <div class="hex-row row-2">
+                        <div class="hex color-prog"><span>MATLAB</span></div>
+                        <div class="hex hex-category color-prog"><span>Programming<br>& Tools</span></div>
+                        <div class="hex color-prog"><span>ROS2</span></div>
+                        <div class="hex color-auto"><span>UKF/EKF</span></div>
+                        <div class="hex color-ml"><span>PyTorch</span></div>
                     </div>
-
-                    <!-- Top-Right: Autonomy -->
-                    <div class="hex-category-group hex-group-2">
-                        <div class="hexagon hex-category">
-                            <div class="hex-content">
-                                <h4>Autonomy<br>& Control</h4>
-                            </div>
-                        </div>
-                        <div class="hex-skills-branch">
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>CBF/GCBF</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>PID/LQR</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>UKF/EKF</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>RRT*</span></div></div>
-                        </div>
+                    
+                    <!-- Row 3 -->
+                    <div class="hex-row row-3">
+                        <div class="hex color-prog"><span>Docker</span></div>
+                        <div class="hex color-comp"><span>WPI HPC</span></div>
+                        <div class="hex hex-main"><span>Skills</span></div>
+                        <div class="hex hex-category color-auto"><span>Autonomy<br>& Control</span></div>
+                        <div class="hex color-auto"><span>RRT*</span></div>
+                        <div class="hex color-ml"><span>TensorFlow</span></div>
                     </div>
-
-                    <!-- Bottom-Right: ML -->
-                    <div class="hex-category-group hex-group-3">
-                        <div class="hexagon hex-category">
-                            <div class="hex-content">
-                                <h4>Machine Learning<br>& Vision</h4>
-                            </div>
-                        </div>
-                        <div class="hex-skills-branch">
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>PyTorch</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>TensorFlow</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>RAFT</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>U-Net</span></div></div>
-                        </div>
+                    
+                    <!-- Row 4 -->
+                    <div class="hex-row row-4">
+                        <div class="hex color-comp"><span>NVIDIA A30</span></div>
+                        <div class="hex hex-category color-comp"><span>Computing<br>Infrastructure</span></div>
+                        <div class="hex color-plat"><span>CrazyFlie 2.0</span></div>
+                        <div class="hex hex-category color-ml"><span>Machine Learning<br>& Vision</span></div>
+                        <div class="hex color-ml"><span>RAFT</span></div>
                     </div>
-
-                    <!-- Bottom: Platforms -->
-                    <div class="hex-category-group hex-group-4">
-                        <div class="hexagon hex-category">
-                            <div class="hex-content">
-                                <h4>Robotics<br>Platforms</h4>
-                            </div>
-                        </div>
-                        <div class="hex-skills-branch">
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>CrazyFlie 2.0</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>AWS DeepRacer</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>OpenManipulatorX</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>Kinova Gen3</span></div></div>
-                        </div>
+                    
+                    <!-- Row 5 -->
+                    <div class="hex-row row-5">
+                        <div class="hex color-comp"><span>RTX 4080</span></div>
+                        <div class="hex color-sim"><span>VizFlyt</span></div>
+                        <div class="hex hex-category color-plat"><span>Robotics<br>Platforms</span></div>
+                        <div class="hex color-plat"><span>AWS DeepRacer</span></div>
+                        <div class="hex color-ml"><span>U-Net</span></div>
                     </div>
-
-                    <!-- Bottom-Left: Simulation -->
-                    <div class="hex-category-group hex-group-5">
-                        <div class="hexagon hex-category">
-                            <div class="hex-content">
-                                <h4>Simulation<br>& Development</h4>
-                            </div>
-                        </div>
-                        <div class="hex-skills-branch">
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>VizFlyt</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>Gazebo</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>OMPL</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>Fusion 360</span></div></div>
-                        </div>
+                    
+                    <!-- Row 6 -->
+                    <div class="hex-row row-6">
+                        <div class="hex color-sim"><span>Gazebo</span></div>
+                        <div class="hex hex-category color-sim"><span>Simulation<br>& Development</span></div>
+                        <div class="hex color-plat"><span>OpenManipulatorX</span></div>
+                        <div class="hex color-plat"><span>Kinova Gen3</span></div>
                     </div>
-
-                    <!-- Top-Left: Computing -->
-                    <div class="hex-category-group hex-group-6">
-                        <div class="hexagon hex-category">
-                            <div class="hex-content">
-                                <h4>Computing<br>Infrastructure</h4>
-                            </div>
-                        </div>
-                        <div class="hex-skills-branch">
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>WPI HPC</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>NVIDIA A30</span></div></div>
-                            <div class="hexagon hex-skill"><div class="hex-content"><span>RTX 4080</span></div></div>
-                        </div>
+                    
+                    <!-- Row 7 -->
+                    <div class="hex-row row-7">
+                        <div class="hex color-sim"><span>OMPL</span></div>
+                        <div class="hex color-sim"><span>Fusion 360</span></div>
                     </div>
                 </div>
             </div>
