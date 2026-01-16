@@ -462,223 +462,196 @@ body > * {
     line-height: 1.6;
 }
 
-/* Skills Hexagon Layout - 3 Levels */
-.skills-hexagon-container {
-    position: relative;
-    min-height: 1200px;
+/* Honeycomb Skills Layout */
+.honeycomb-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin-bottom: 2rem;
-    padding: 4rem 0;
+    align-items: center;
+    padding: 3rem 0;
+    overflow-x: auto;
 }
 
-/* Level 1: Center Hexagon */
-.hex-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-}
-
-/* Base Hexagon Styles */
-.hexagon {
-    position: relative;
-    width: 120px;
-    height: 138px;
-    margin: 0 auto;
-}
-
-.hexagon::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(157, 78, 221, 0.25) 0%, rgba(123, 44, 191, 0.2) 100%);
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    border: 2px solid var(--color-accent-purple);
-    transition: all var(--transition-speed);
-}
-
-.hexagon:hover::before {
-    background: linear-gradient(135deg, rgba(157, 78, 221, 0.4) 0%, rgba(123, 44, 191, 0.35) 100%);
-    border-color: var(--color-accent-silver);
-    box-shadow: 0 0 20px rgba(157, 78, 221, 0.6);
-}
-
-.hex-content {
-    position: relative;
-    width: 100%;
-    height: 100%;
+.honeycomb {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0;
+}
+
+.hex-row {
+    display: flex;
+    gap: 4px;
+    margin-bottom: -28px;
+}
+
+.hex-row.row-2,
+.hex-row.row-4,
+.hex-row.row-6 {
+    margin-left: 82px;
+}
+
+.hex {
+    width: 160px;
+    height: 92px;
+    position: relative;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hex::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(60, 60, 60, 0.6);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    border: 2px solid rgba(157, 78, 221, 0.3);
+    transition: all 0.3s ease;
+}
+
+.hex span {
+    position: relative;
     z-index: 1;
+    color: var(--color-text-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
     text-align: center;
+    padding: 0.5rem;
+    line-height: 1.2;
 }
 
-/* Main Center Hexagon */
-.hex-main {
-    width: 180px;
-    height: 207px;
-}
-
+/* Main Center Hex */
 .hex-main::before {
     background: linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-accent-purple-dark) 100%);
     border: 3px solid var(--color-accent-silver);
 }
 
-.hex-title {
-    font-size: 2rem;
+.hex-main span {
+    font-size: 1.8rem;
     font-weight: 700;
-    color: var(--color-text-primary);
     letter-spacing: 2px;
 }
 
-/* Level 2: Category Hexagons */
-.hex-categories {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.hex-category-group {
-    position: absolute;
-}
-
-.hex-category {
-    width: 150px;
-    height: 173px;
-}
-
-.hex-category h4 {
-    font-size: 0.9rem;
+/* Category Hexagons */
+.hex-category span {
+    font-size: 0.75rem;
     font-weight: 600;
-    color: var(--color-text-primary);
-    line-height: 1.2;
 }
 
-/* Level 3: Individual Skill Hexagons */
-.hex-skills-branch {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
+/* Color Categories */
+.color-prog::before {
+    background: rgba(52, 152, 219, 0.3);
+    border-color: rgba(52, 152, 219, 0.6);
 }
 
-.hex-skill {
-    width: 80px;
-    height: 92px;
+.color-prog:hover::before {
+    background: rgba(52, 152, 219, 0.5);
+    border-color: rgb(52, 152, 219);
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.6);
 }
 
-.hex-skill span {
-    font-size: 0.7rem;
-    color: var(--color-text-secondary);
-    font-weight: 500;
+.color-auto::before {
+    background: rgba(46, 204, 113, 0.3);
+    border-color: rgba(46, 204, 113, 0.6);
 }
 
-/* Positioning for 6 Category Groups */
-.hex-group-1 {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+.color-auto:hover::before {
+    background: rgba(46, 204, 113, 0.5);
+    border-color: rgb(46, 204, 113);
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.6);
 }
 
-.hex-group-2 {
-    top: 20%;
-    right: 5%;
+.color-ml::before {
+    background: rgba(231, 76, 60, 0.3);
+    border-color: rgba(231, 76, 60, 0.6);
 }
 
-.hex-group-3 {
-    bottom: 20%;
-    right: 5%;
+.color-ml:hover::before {
+    background: rgba(231, 76, 60, 0.5);
+    border-color: rgb(231, 76, 60);
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
 }
 
-.hex-group-4 {
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+.color-plat::before {
+    background: rgba(230, 126, 34, 0.3);
+    border-color: rgba(230, 126, 34, 0.6);
 }
 
-.hex-group-5 {
-    bottom: 20%;
-    left: 5%;
+.color-plat:hover::before {
+    background: rgba(230, 126, 34, 0.5);
+    border-color: rgb(230, 126, 34);
+    box-shadow: 0 0 20px rgba(230, 126, 34, 0.6);
 }
 
-.hex-group-6 {
-    top: 20%;
-    left: 5%;
+.color-sim::before {
+    background: rgba(155, 89, 182, 0.3);
+    border-color: rgba(155, 89, 182, 0.6);
+}
+
+.color-sim:hover::before {
+    background: rgba(155, 89, 182, 0.5);
+    border-color: rgb(155, 89, 182);
+    box-shadow: 0 0 20px rgba(155, 89, 182, 0.6);
+}
+
+.color-comp::before {
+    background: rgba(241, 196, 15, 0.3);
+    border-color: rgba(241, 196, 15, 0.6);
+}
+
+.color-comp:hover::before {
+    background: rgba(241, 196, 15, 0.5);
+    border-color: rgb(241, 196, 15);
+    box-shadow: 0 0 20px rgba(241, 196, 15, 0.6);
 }
 
 /* Responsive */
 @media (max-width: 1200px) {
-    .skills-hexagon-container {
-        min-height: 1400px;
+    .hex {
+        width: 140px;
+        height: 80px;
     }
     
-    .hex-group-1 { top: 2%; }
-    .hex-group-2 { top: 22%; right: 2%; }
-    .hex-group-3 { bottom: 22%; right: 2%; }
-    .hex-group-4 { bottom: 2%; }
-    .hex-group-5 { bottom: 22%; left: 2%; }
-    .hex-group-6 { top: 22%; left: 2%; }
+    .hex-row.row-2,
+    .hex-row.row-4,
+    .hex-row.row-6 {
+        margin-left: 72px;
+    }
+    
+    .hex-row {
+        margin-bottom: -24px;
+    }
 }
 
 @media (max-width: 768px) {
-    .skills-hexagon-container {
-        min-height: auto;
-        flex-direction: column;
-        padding: 2rem 0;
-    }
-    
-    .hex-center {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-        margin-bottom: 2rem;
-    }
-    
-    .hex-categories {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        align-items: center;
-    }
-    
-    .hex-category-group {
-        position: relative;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        transform: none !important;
-    }
-    
-    .hexagon {
+    .hex {
         width: 100px;
-        height: 115px;
+        height: 58px;
     }
     
-    .hex-main {
-        width: 140px;
-        height: 161px;
+    .hex span {
+        font-size: 0.65rem;
     }
     
-    .hex-category {
-        width: 130px;
-        height: 150px;
+    .hex-main span {
+        font-size: 1.2rem;
     }
     
-    .hex-skill {
-        width: 70px;
-        height: 80px;
+    .hex-category span {
+        font-size: 0.6rem;
+    }
+    
+    .hex-row.row-2,
+    .hex-row.row-4,
+    .hex-row.row-6 {
+        margin-left: 52px;
+    }
+    
+    .hex-row {
+        margin-bottom: -17px;
     }
 }
 
