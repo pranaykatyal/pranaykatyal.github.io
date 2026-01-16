@@ -462,27 +462,18 @@ body > * {
     line-height: 1.6;
 }
 
-/* Skills Hexagon Layout */
+/* Skills Hexagon Layout - 3 Levels */
 .skills-hexagon-container {
     position: relative;
-    height: 800px;
+    min-height: 1200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
+    padding: 4rem 0;
 }
 
-.hex-connections {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 800px;
-    height: 800px;
-    pointer-events: none;
-    z-index: 0;
-}
-
+/* Level 1: Center Hexagon */
 .hex-center {
     position: absolute;
     top: 50%;
@@ -491,12 +482,12 @@ body > * {
     z-index: 10;
 }
 
+/* Base Hexagon Styles */
 .hexagon {
     position: relative;
-    width: 150px;
-    height: 173px;
+    width: 120px;
+    height: 138px;
     margin: 0 auto;
-    cursor: pointer;
 }
 
 .hexagon::before {
@@ -506,17 +497,16 @@ body > * {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(157, 78, 221, 0.2) 0%, rgba(123, 44, 191, 0.15) 100%);
+    background: linear-gradient(135deg, rgba(157, 78, 221, 0.25) 0%, rgba(123, 44, 191, 0.2) 100%);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     border: 2px solid var(--color-accent-purple);
     transition: all var(--transition-speed);
 }
 
 .hexagon:hover::before {
-    background: linear-gradient(135deg, rgba(157, 78, 221, 0.4) 0%, rgba(123, 44, 191, 0.3) 100%);
+    background: linear-gradient(135deg, rgba(157, 78, 221, 0.4) 0%, rgba(123, 44, 191, 0.35) 100%);
     border-color: var(--color-accent-silver);
-    box-shadow: 0 0 30px rgba(157, 78, 221, 0.6);
-    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.6);
 }
 
 .hex-content {
@@ -527,7 +517,7 @@ body > * {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: 0.5rem;
     z-index: 1;
     text-align: center;
 }
@@ -543,182 +533,132 @@ body > * {
     border: 3px solid var(--color-accent-silver);
 }
 
-.hex-main:hover::before {
-    box-shadow: 0 0 40px rgba(157, 78, 221, 0.8);
-}
-
 .hex-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--color-text-primary);
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
-/* Category Hexagons */
-.hex-category h4 {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-}
-
-.hex-skills-mini {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    align-items: center;
-    max-height: 90px;
-    overflow: hidden;
-}
-
-.hex-skills-mini span {
-    background: rgba(157, 78, 221, 0.3);
-    color: var(--color-text-secondary);
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-    font-size: 0.7rem;
-    border: 1px solid rgba(157, 78, 221, 0.4);
-    white-space: nowrap;
-    text-align: center;
-}
-
-/* Hexagon Positioning - 6 sides */
-.hex-ring {
+/* Level 2: Category Hexagons */
+.hex-categories {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-.hex-pos-1 {
+.hex-category-group {
     position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
-.hex-pos-2 {
-    position: absolute;
-    top: 190px;
-    right: 80px;
+.hex-category {
+    width: 150px;
+    height: 173px;
 }
 
-.hex-pos-3 {
-    position: absolute;
-    bottom: 190px;
-    right: 80px;
-}
-
-.hex-pos-4 {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.hex-pos-5 {
-    position: absolute;
-    bottom: 190px;
-    left: 80px;
-}
-
-.hex-pos-6 {
-    position: absolute;
-    top: 190px;
-    left: 80px;
-}
-
-/* Skill Details Grid Below Hexagon */
-.skill-details-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.skill-detail-card {
-    background: rgba(42, 42, 42, 0.8);
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid var(--color-border);
-    transition: all var(--transition-speed);
-}
-
-.skill-detail-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--color-accent-purple);
-    box-shadow: 0 10px 30px rgba(157, 78, 221, 0.3);
-}
-
-.skill-detail-card h3 {
-    color: var(--color-accent-purple);
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-.skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.skill-tag {
-    background-color: var(--color-bg-primary);
-    color: var(--color-text-secondary);
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
+.hex-category h4 {
     font-size: 0.9rem;
-    border: 1px solid var(--color-border);
-    transition: all var(--transition-speed);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.2;
 }
 
-.skill-tag:hover {
-    background-color: var(--color-accent-purple);
-    color: var(--color-text-primary);
-    border-color: var(--color-accent-purple);
+/* Level 3: Individual Skill Hexagons */
+.hex-skills-branch {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hex-skill {
+    width: 80px;
+    height: 92px;
+}
+
+.hex-skill span {
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+/* Positioning for 6 Category Groups */
+.hex-group-1 {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hex-group-2 {
+    top: 20%;
+    right: 5%;
+}
+
+.hex-group-3 {
+    bottom: 20%;
+    right: 5%;
+}
+
+.hex-group-4 {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hex-group-5 {
+    bottom: 20%;
+    left: 5%;
+}
+
+.hex-group-6 {
+    top: 20%;
+    left: 5%;
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .skills-hexagon-container {
-        height: 700px;
+        min-height: 1400px;
     }
     
-    .hex-connections {
-        width: 700px;
-        height: 700px;
-    }
-    
-    .hexagon {
-        width: 130px;
-        height: 150px;
-    }
-    
-    .hex-main {
-        width: 160px;
-        height: 184px;
-    }
-    
-    .hex-pos-1 { top: 40px; }
-    .hex-pos-2 { top: 160px; right: 60px; }
-    .hex-pos-3 { bottom: 160px; right: 60px; }
-    .hex-pos-4 { bottom: 40px; }
-    .hex-pos-5 { bottom: 160px; left: 60px; }
-    .hex-pos-6 { top: 160px; left: 60px; }
+    .hex-group-1 { top: 2%; }
+    .hex-group-2 { top: 22%; right: 2%; }
+    .hex-group-3 { bottom: 22%; right: 2%; }
+    .hex-group-4 { bottom: 2%; }
+    .hex-group-5 { bottom: 22%; left: 2%; }
+    .hex-group-6 { top: 22%; left: 2%; }
 }
 
 @media (max-width: 768px) {
     .skills-hexagon-container {
-        height: 600px;
+        min-height: auto;
+        flex-direction: column;
+        padding: 2rem 0;
+    }
+    
+    .hex-center {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
         margin-bottom: 2rem;
     }
     
-    .hex-connections {
-        width: 600px;
-        height: 600px;
+    .hex-categories {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+    
+    .hex-category-group {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
     }
     
     .hexagon {
@@ -727,27 +667,18 @@ body > * {
     }
     
     .hex-main {
+        width: 140px;
+        height: 161px;
+    }
+    
+    .hex-category {
         width: 130px;
         height: 150px;
     }
     
-    .hex-category h4 {
-        font-size: 0.75rem;
-    }
-    
-    .hex-title {
-        font-size: 1.4rem;
-    }
-    
-    .hex-pos-1 { top: 30px; }
-    .hex-pos-2 { top: 140px; right: 40px; }
-    .hex-pos-3 { bottom: 140px; right: 40px; }
-    .hex-pos-4 { bottom: 30px; }
-    .hex-pos-5 { bottom: 140px; left: 40px; }
-    .hex-pos-6 { top: 140px; left: 40px; }
-    
-    .skill-details-grid {
-        grid-template-columns: 1fr;
+    .hex-skill {
+        width: 70px;
+        height: 80px;
     }
 }
 
