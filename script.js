@@ -90,7 +90,7 @@ function createParticles() {
     const hero = document.querySelector('.hero');
     if (!hero) return;
     
-    const particleCount = 60; // Increased from 50
+    const particleCount = 100; // Increased from 60 for more density
     const canvas = document.createElement('canvas');
     canvas.style.cssText = `
         position: absolute;
