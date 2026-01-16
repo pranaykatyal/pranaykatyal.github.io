@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Pranay Katyal - Robotics Engineer</title>
-    <link rel="stylesheet" href="styles.css?v=2.7">
+    <link rel="stylesheet" href="styles.css?v=2.8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -90,112 +90,41 @@
     <section id="skills" class="section">
         <div class="container">
             <h2 class="section-title">Skills</h2>
-            <div class="skills-cluster-container">
+            <div class="hex-center-layout">
                 <!-- Center Hexagon -->
-                <div class="hex-cluster hex-main" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                <div class="hex-item hex-center-main">
                     <span>Skills</span>
                 </div>
 
-                <!-- Programming & Tools Cluster (Blue) - Top Left -->
-                <div class="hex-cluster hex-category color-prog" style="top: 20%; left: 30%;">
+                <!-- 6 Category Hexagons Around Center -->
+                <!-- Top -->
+                <div class="hex-item hex-pos-top color-prog">
                     <span>Programming<br>& Tools</span>
                 </div>
-                <div class="hex-cluster color-prog" style="top: 5%; left: 20%;">
-                    <span>Python</span>
-                </div>
-                <div class="hex-cluster color-prog" style="top: 8%; left: 35%;">
-                    <span>C++</span>
-                </div>
-                <div class="hex-cluster color-prog" style="top: 25%; left: 18%;">
-                    <span>MATLAB</span>
-                </div>
-                <div class="hex-cluster color-prog" style="top: 18%; left: 42%;">
-                    <span>ROS2</span>
-                </div>
-                <div class="hex-cluster color-prog" style="top: 32%; left: 10%;">
-                    <span>Docker</span>
-                </div>
 
-                <!-- Autonomy & Control Cluster (Green) - Top Right -->
-                <div class="hex-cluster hex-category color-auto" style="top: 20%; right: 28%;">
+                <!-- Top-Right -->
+                <div class="hex-item hex-pos-tr color-auto">
                     <span>Autonomy<br>& Control</span>
                 </div>
-                <div class="hex-cluster color-auto" style="top: 8%; right: 22%;">
-                    <span>CBF/GCBF</span>
-                </div>
-                <div class="hex-cluster color-auto" style="top: 5%; right: 35%;">
-                    <span>PID/LQR</span>
-                </div>
-                <div class="hex-cluster color-auto" style="top: 25%; right: 18%;">
-                    <span>UKF/EKF</span>
-                </div>
-                <div class="hex-cluster color-auto" style="top: 32%; right: 10%;">
-                    <span>RRT*</span>
-                </div>
 
-                <!-- Machine Learning & Vision Cluster (Red) - Right -->
-                <div class="hex-cluster hex-category color-ml" style="top: 50%; right: 12%;">
+                <!-- Bottom-Right -->
+                <div class="hex-item hex-pos-br color-ml">
                     <span>Machine Learning<br>& Vision</span>
                 </div>
-                <div class="hex-cluster color-ml" style="top: 42%; right: 5%;">
-                    <span>PyTorch</span>
-                </div>
-                <div class="hex-cluster color-ml" style="top: 58%; right: 5%;">
-                    <span>TensorFlow</span>
-                </div>
-                <div class="hex-cluster color-ml" style="top: 48%; right: 22%;">
-                    <span>RAFT</span>
-                </div>
-                <div class="hex-cluster color-ml" style="top: 62%; right: 18%;">
-                    <span>U-Net</span>
-                </div>
 
-                <!-- Robotics Platforms Cluster (Orange) - Bottom Right -->
-                <div class="hex-cluster hex-category color-plat" style="bottom: 18%; right: 28%;">
+                <!-- Bottom -->
+                <div class="hex-item hex-pos-bottom color-plat">
                     <span>Robotics<br>Platforms</span>
                 </div>
-                <div class="hex-cluster color-plat" style="bottom: 8%; right: 35%;">
-                    <span>CrazyFlie 2.0</span>
-                </div>
-                <div class="hex-cluster color-plat" style="bottom: 5%; right: 22%;">
-                    <span>AWS DeepRacer</span>
-                </div>
-                <div class="hex-cluster color-plat" style="bottom: 25%; right: 18%;">
-                    <span>OpenManipulatorX</span>
-                </div>
-                <div class="hex-cluster color-plat" style="bottom: 32%; right: 10%;">
-                    <span>Kinova Gen3</span>
-                </div>
 
-                <!-- Simulation & Development Cluster (Purple) - Bottom Left -->
-                <div class="hex-cluster hex-category color-sim" style="bottom: 18%; left: 28%;">
+                <!-- Bottom-Left -->
+                <div class="hex-item hex-pos-bl color-sim">
                     <span>Simulation<br>& Development</span>
                 </div>
-                <div class="hex-cluster color-sim" style="bottom: 8%; left: 20%;">
-                    <span>VizFlyt</span>
-                </div>
-                <div class="hex-cluster color-sim" style="bottom: 5%; left: 35%;">
-                    <span>Gazebo</span>
-                </div>
-                <div class="hex-cluster color-sim" style="bottom: 25%; left: 18%;">
-                    <span>OMPL</span>
-                </div>
-                <div class="hex-cluster color-sim" style="bottom: 32%; left: 10%;">
-                    <span>Fusion 360</span>
-                </div>
 
-                <!-- Computing Infrastructure Cluster (Yellow) - Left -->
-                <div class="hex-cluster hex-category color-comp" style="top: 50%; left: 12%;">
+                <!-- Top-Left -->
+                <div class="hex-item hex-pos-tl color-comp">
                     <span>Computing<br>Infrastructure</span>
-                </div>
-                <div class="hex-cluster color-comp" style="top: 42%; left: 5%;">
-                    <span>WPI HPC</span>
-                </div>
-                <div class="hex-cluster color-comp" style="top: 58%; left: 5%;">
-                    <span>NVIDIA A30</span>
-                </div>
-                <div class="hex-cluster color-comp" style="top: 62%; left: 18%;">
-                    <span>RTX 4080</span>
                 </div>
             </div>
         </div>
