@@ -465,7 +465,7 @@ body > * {
 /* Simple Hexagon Layout - Center + 6 */
 .hex-center-layout {
     position: relative;
-    height: 600px;
+    height: 700px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -520,35 +520,35 @@ body > * {
 
 /* Position 6 hexagons touching center - proper honeycomb spacing */
 .hex-pos-top {
-    top: calc(50% - 190px);
+    top: calc(50% - 230px);
     left: 50%;
     transform: translateX(-50%);
 }
 
 .hex-pos-tr {
-    top: calc(50% - 95px);
-    left: calc(50% + 155px);
+    top: calc(50% - 115px);
+    left: calc(50% + 200px);
 }
 
 .hex-pos-br {
-    top: calc(50% + 95px);
-    left: calc(50% + 155px);
+    top: calc(50% + 115px);
+    left: calc(50% + 200px);
 }
 
 .hex-pos-bottom {
-    top: calc(50% + 190px);
+    top: calc(50% + 230px);
     left: 50%;
     transform: translateX(-50%);
 }
 
 .hex-pos-bl {
-    top: calc(50% + 95px);
-    left: calc(50% - 155px);
+    top: calc(50% + 115px);
+    left: calc(50% - 200px);
 }
 
 .hex-pos-tl {
-    top: calc(50% - 95px);
-    left: calc(50% - 155px);
+    top: calc(50% - 115px);
+    left: calc(50% - 200px);
 }
 
 /* Color Schemes */
