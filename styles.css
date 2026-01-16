@@ -518,37 +518,37 @@ body > * {
     letter-spacing: 2px;
 }
 
-/* Position 6 hexagons around center */
+/* Position 6 hexagons touching center - proper honeycomb spacing */
 .hex-pos-top {
-    top: 0;
+    top: calc(50% - 190px);
     left: 50%;
     transform: translateX(-50%);
 }
 
 .hex-pos-tr {
-    top: 25%;
-    right: 20%;
+    top: calc(50% - 95px);
+    left: calc(50% + 155px);
 }
 
 .hex-pos-br {
-    bottom: 25%;
-    right: 20%;
+    top: calc(50% + 95px);
+    left: calc(50% + 155px);
 }
 
 .hex-pos-bottom {
-    bottom: 0;
+    top: calc(50% + 190px);
     left: 50%;
     transform: translateX(-50%);
 }
 
 .hex-pos-bl {
-    bottom: 25%;
-    left: 20%;
+    top: calc(50% + 95px);
+    left: calc(50% - 155px);
 }
 
 .hex-pos-tl {
-    top: 25%;
-    left: 20%;
+    top: calc(50% - 95px);
+    left: calc(50% - 155px);
 }
 
 /* Color Schemes */
@@ -627,6 +627,34 @@ body > * {
         width: 190px;
         height: 110px;
     }
+    
+    .hex-pos-top {
+        top: calc(50% - 160px);
+    }
+    
+    .hex-pos-tr {
+        top: calc(50% - 80px);
+        left: calc(50% + 130px);
+    }
+    
+    .hex-pos-br {
+        top: calc(50% + 80px);
+        left: calc(50% + 130px);
+    }
+    
+    .hex-pos-bottom {
+        top: calc(50% + 160px);
+    }
+    
+    .hex-pos-bl {
+        top: calc(50% + 80px);
+        left: calc(50% - 130px);
+    }
+    
+    .hex-pos-tl {
+        top: calc(50% - 80px);
+        left: calc(50% - 130px);
+    }
 }
 
 @media (max-width: 768px) {
@@ -650,6 +678,34 @@ body > * {
     
     .hex-center-main span {
         font-size: 1.5rem;
+    }
+    
+    .hex-pos-top {
+        top: calc(50% - 130px);
+    }
+    
+    .hex-pos-tr {
+        top: calc(50% - 65px);
+        left: calc(50% + 105px);
+    }
+    
+    .hex-pos-br {
+        top: calc(50% + 65px);
+        left: calc(50% + 105px);
+    }
+    
+    .hex-pos-bottom {
+        top: calc(50% + 130px);
+    }
+    
+    .hex-pos-bl {
+        top: calc(50% + 65px);
+        left: calc(50% - 105px);
+    }
+    
+    .hex-pos-tl {
+        top: calc(50% - 65px);
+        left: calc(50% - 105px);
     }
 }
 
