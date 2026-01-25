@@ -90,7 +90,7 @@ function createParticles() {
     const hero = document.querySelector('.hero');
     if (!hero) return;
     
-    const particleCount = 100; // Increased from 60 for more density
+    const particleCount = 100;
     const canvas = document.createElement('canvas');
     canvas.style.cssText = `
         position: absolute;
@@ -113,10 +113,10 @@ function createParticles() {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2.5 + 1; // Increased size
-            this.speedX = Math.random() * 0.6 - 0.3; // Increased speed
+            this.size = Math.random() * 2.5 + 1;
+            this.speedX = Math.random() * 0.6 - 0.3;
             this.speedY = Math.random() * 0.6 - 0.3;
-            this.opacity = Math.random() * 0.6 + 0.3; // Increased opacity
+            this.opacity = Math.random() * 0.6 + 0.3;
             this.color = Math.random() > 0.5 ? 'rgba(157, 78, 221,' : 'rgba(192, 192, 192,';
         }
         
@@ -150,16 +150,15 @@ function createParticles() {
             particle.draw();
         });
         
-        // Draw connections between nearby particles
         particles.forEach((particleA, indexA) => {
             particles.slice(indexA + 1).forEach(particleB => {
                 const dx = particleA.x - particleB.x;
                 const dy = particleA.y - particleB.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
-                if (distance < 120) { // Increased from 100
-                    ctx.strokeStyle = `rgba(157, 78, 221, ${0.15 * (1 - distance / 120)})`; // Increased opacity
-                    ctx.lineWidth = 0.7; // Increased from 0.5
+                if (distance < 120) {
+                    ctx.strokeStyle = `rgba(157, 78, 221, ${0.15 * (1 - distance / 120)})`;
+                    ctx.lineWidth = 0.7;
                     ctx.beginPath();
                     ctx.moveTo(particleA.x, particleA.y);
                     ctx.lineTo(particleB.x, particleB.y);
@@ -173,17 +172,14 @@ function createParticles() {
     
     animate();
     
-    // Resize canvas on window resize
     window.addEventListener('resize', () => {
         canvas.width = hero.offsetWidth;
         canvas.height = hero.offsetHeight;
     });
 }
 
-// Initialize particles
 createParticles();
 
-// Add hover effect to project cards
 document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
         this.style.background = 'linear-gradient(135deg, rgba(42, 42, 42, 1) 0%, rgba(157, 78, 221, 0.1) 100%)';
@@ -194,7 +190,6 @@ document.querySelectorAll('.project-card').forEach(card => {
     });
 });
 
-// Prevent default behavior for same-page links
 window.addEventListener('load', () => {
     if (window.location.hash) {
         setTimeout(() => {
@@ -206,6 +201,223 @@ window.addEventListener('load', () => {
     }
 });
 
-// Add console message
 console.log('%c👋 Welcome to Pranay Katyal\'s Portfolio!', 'color: #9d4edd; font-size: 16px; font-weight: bold;');
 console.log('%cInterested in collaboration? Reach out at pranaykatyal2@gmail.com', 'color: #c0c0c0; font-size: 12px;');
+
+// ========================================
+// BLACK HOLE CANVAS ANIMATIONS
+// ========================================
+
+function initBlackHoleAnimations() {
+    const canvas = document.getElementById('animationCanvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    let centerX = canvas.width / 2;
+    let centerY = canvas.height / 2;
+
+    window.addEventListener('resize', () => {
+        centerX = canvas.width / 2;
+        centerY = canvas.height / 2;
+    });
+
+    class Star {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = 0.5 + Math.random() * 1.5;
+            this.baseOpacity = 0.3 + Math.random() * 0.5;
+            this.twinkleSpeed = 0.01 + Math.random() * 0.02;
+            this.twinklePhase = Math.random() * Math.PI * 2;
+        }
+
+        update() {
+            this.twinklePhase += this.twinkleSpeed;
+        }
+
+        draw() {
+            const twinkle = (Math.sin(this.twinklePhase) + 1) / 2;
+            const opacity = this.baseOpacity * (0.5 + 0.5 * twinkle);
+            
+            ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 300 + Math.random() * 400;
+            this.angle = angle;
+            this.distance = distance;
+            this.x = centerX + Math.cos(angle) * distance;
+            this.y = centerY + Math.sin(angle) * distance;
+            this.size = 0.8 + Math.random() * 0.7;
+            this.opacity = 0.7 + Math.random() * 0.3;
+            this.spiralSpeed = 0.008 + Math.random() * 0.006;
+            this.fallSpeed = 0.6 + Math.random() * 0.5;
+        }
+
+        update() {
+            this.angle += this.spiralSpeed;
+            this.distance -= this.fallSpeed;
+            
+            if (this.distance < 30) {
+                this.reset();
+                return;
+            }
+
+            this.x = centerX + Math.cos(this.angle) * this.distance;
+            this.y = centerY + Math.sin(this.angle) * this.distance;
+        }
+
+        draw() {
+            const distanceFade = Math.min(1.0, this.distance / 200);
+            const finalOpacity = this.opacity * distanceFade;
+            
+            ctx.shadowBlur = 4;
+            ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
+            ctx.fillStyle = `rgba(255, 255, 255, ${finalOpacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+    }
+
+    class CloudyRing {
+        constructor(radius, width, speed, upperHalfOnly = false, baseOpacity = 0.015) {
+            this.radius = radius;
+            this.width = width;
+            this.speed = speed;
+            this.angle = 0;
+            this.segments = 60;
+            this.upperHalfOnly = upperHalfOnly;
+            this.baseOpacity = baseOpacity;
+            
+            this.dustRings = [];
+            for (let i = 0; i < 5; i++) {
+                this.dustRings.push({
+                    radiusOffset: -width/2 + (i / 4) * width,
+                    opacity: (baseOpacity * 0.5) + Math.random() * (baseOpacity * 0.8),
+                    phaseOffset: Math.random() * Math.PI * 2
+                });
+            }
+        }
+
+        update() {
+            this.angle += this.speed;
+        }
+
+        draw() {
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            
+            if (this.upperHalfOnly) {
+                ctx.beginPath();
+                ctx.rect(-canvas.width, -canvas.height, canvas.width * 2, canvas.height);
+                ctx.clip();
+            }
+            
+            this.dustRings.forEach(dust => {
+                const dustRadius = this.radius + dust.radiusOffset;
+                
+                for (let i = 0; i < 40; i++) {
+                    const segmentAngle = (i / 40) * Math.PI * 2 + this.angle + dust.phaseOffset;
+                    const nextAngle = ((i + 1) / 40) * Math.PI * 2 + this.angle + dust.phaseOffset;
+                    
+                    const opacityVariation = (Math.sin(i / 40 * Math.PI * 3 + this.angle * 2) + 1) / 2;
+                    const finalOpacity = dust.opacity * (0.5 + 0.5 * opacityVariation);
+                    
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = `rgba(200, 180, 255, ${finalOpacity * 0.3})`;
+                    ctx.strokeStyle = `rgba(200, 180, 255, ${finalOpacity})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.lineCap = 'round';
+                    ctx.beginPath();
+                    ctx.arc(0, 0, dustRadius, segmentAngle, nextAngle);
+                    ctx.stroke();
+                }
+            });
+            
+            for (let i = 0; i < this.segments; i++) {
+                const segmentAngle = (i / this.segments) * Math.PI * 2 + this.angle;
+                const nextAngle = ((i + 1) / this.segments) * Math.PI * 2 + this.angle;
+                
+                const opacityVariation = (Math.sin(i / this.segments * Math.PI * 5 + this.angle * 3) + 1) / 2;
+                const finalOpacity = this.baseOpacity + (this.baseOpacity * 1.5) * opacityVariation;
+                
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = `rgba(200, 180, 255, ${finalOpacity * 0.4})`;
+                ctx.strokeStyle = `rgba(200, 180, 255, ${finalOpacity})`;
+                ctx.lineWidth = this.width;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.arc(0, 0, this.radius, segmentAngle, nextAngle);
+                ctx.stroke();
+            }
+            
+            ctx.shadowBlur = 0;
+            ctx.restore();
+        }
+    }
+
+    const stars = [];
+    for (let i = 0; i < 150; i++) {
+        stars.push(new Star());
+    }
+
+    const particles = [];
+    for (let i = 0; i < 25; i++) {
+        particles.push(new Particle());
+    }
+
+    const rings = [
+        new CloudyRing(45, 4, -0.003, false, 0.015),
+        new CloudyRing(75, 11, 0.004, true, 0.05),
+    ];
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        centerX = canvas.width / 2;
+        centerY = canvas.height / 2;
+
+        stars.forEach(star => {
+            star.update();
+            star.draw();
+        });
+
+        rings.forEach(ring => {
+            ring.update();
+            ring.draw();
+        });
+
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initBlackHoleAnimations();
+});
