@@ -942,21 +942,20 @@ body > * {
     position: absolute;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     top: 0;
     left: 0;
     z-index: 0;
+    overflow: hidden;
 }
 
 #blackholeImage {
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
     z-index: 1;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 #animationCanvas {
