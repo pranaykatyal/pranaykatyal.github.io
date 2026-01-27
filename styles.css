@@ -233,16 +233,22 @@ body > * {
     max-width: 800px;
     position: relative;
     z-index: 10;
+    text-align: center;
 }
 
 .hero-title {
     font-size: 4rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     background: linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-accent-silver) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    position: absolute;
+    top: -280px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
 }
 
 .hero-subtitle {
