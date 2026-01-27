@@ -1000,7 +1000,7 @@ body > * {
     top: 0;
     left: 0;
     background: radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(1, 0, 16, 0.3) 70%, rgba(1, 0, 16, 0.8) 85%, #010010 100%);
-    z-index: 3;
+    z-index: 2;
     pointer-events: none;
 }
 
@@ -1020,7 +1020,7 @@ body > * {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 2;
+    z-index: 3;
     pointer-events: none;
 }
 
