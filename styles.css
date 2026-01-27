@@ -258,15 +258,30 @@ body > * {
 .hero-subtitle {
     font-size: 1.5rem;
     color: var(--color-text-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     font-weight: 500;
+    position: absolute;
+    bottom: -180px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .hero-description {
     font-size: 1.1rem;
     color: var(--color-text-secondary);
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     line-height: 1.8;
+    position: absolute;
+    bottom: -260px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 800px;
 }
 
 .hero-links {
