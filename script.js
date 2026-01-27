@@ -209,14 +209,18 @@ console.log('%cInterested in collaboration? Reach out at pranaykatyal2@gmail.com
 // ========================================
 
 function initBlackHoleAnimations() {
+    console.log("BLACK HOLE ANIMATION: Starting initialization...");
     const canvas = document.getElementById('animationCanvas');
+    console.log("BLACK HOLE ANIMATION: Canvas element:", canvas);
     if (!canvas) return;
     
     const ctx = canvas.getContext('2d');
+    console.log("BLACK HOLE ANIMATION: Canvas context:", ctx);
 
     function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        console.log("BLACK HOLE ANIMATION: Canvas resized to", canvas.width, "x", canvas.height);
     }
     resize();
     window.addEventListener('resize', resize);
@@ -400,6 +404,7 @@ function initBlackHoleAnimations() {
         // TEST: Draw a bright red square to verify canvas is visible
         ctx.fillStyle = 'red';
         ctx.fillRect(50, 50, 100, 100);
+        console.log("BLACK HOLE ANIMATION: Drawing red test square at 50,50");
 
         stars.forEach(star => {
             star.update();
@@ -414,6 +419,7 @@ function initBlackHoleAnimations() {
         requestAnimationFrame(animate);
     }
 
+    console.log("BLACK HOLE ANIMATION: Starting animation loop...");
     animate();
 }
 
