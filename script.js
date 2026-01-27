@@ -423,6 +423,14 @@ function initBlackHoleAnimations() {
     animate();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+// Call immediately if DOM is already loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("DOM LOADED - calling initBlackHoleAnimations");
+        initBlackHoleAnimations();
+    });
+} else {
+    // DOM already loaded, call immediately
+    console.log("DOM ALREADY LOADED - calling initBlackHoleAnimations immediately");
     initBlackHoleAnimations();
-});
+}
