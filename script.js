@@ -397,6 +397,10 @@ function initBlackHoleAnimations() {
         centerX = canvas.width / 2;
         centerY = canvas.height / 2;
 
+        // TEST: Draw a bright red square to verify canvas is visible
+        ctx.fillStyle = 'red';
+        ctx.fillRect(50, 50, 100, 100);
+
         stars.forEach(star => {
             star.update();
             star.draw();
