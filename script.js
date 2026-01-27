@@ -386,10 +386,7 @@ function initBlackHoleAnimations() {
         particles.push(new Particle());
     }
 
-    const rings = [
-        new CloudyRing(45, 4, -0.003, false, 0.015),
-        new CloudyRing(75, 11, 0.004, true, 0.05),
-    ];
+    const rings = [];
 
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -400,11 +397,6 @@ function initBlackHoleAnimations() {
         stars.forEach(star => {
             star.update();
             star.draw();
-        });
-
-        rings.forEach(ring => {
-            ring.update();
-            ring.draw();
         });
 
         particles.forEach(particle => {
