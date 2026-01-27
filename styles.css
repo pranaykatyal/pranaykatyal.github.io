@@ -245,7 +245,7 @@ body > * {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     position: absolute;
-    top: -280px;
+    top: -220px;
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
