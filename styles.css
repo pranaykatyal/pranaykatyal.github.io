@@ -951,6 +951,18 @@ body > * {
     overflow: hidden;
 }
 
+#blackhole-container::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(1, 0, 16, 0.3) 70%, rgba(1, 0, 16, 0.8) 85%, #010010 100%);
+    z-index: 3;
+    pointer-events: none;
+}
+
 #blackholeImage {
     position: absolute;
     max-width: 100%;
