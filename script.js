@@ -233,8 +233,8 @@ function initBlackHoleAnimations() {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.size = 0.5 + Math.random() * 1.5;
-            this.baseOpacity = 0.3 + Math.random() * 0.5;
+            this.size = 1 + Math.random() * 2;
+            this.baseOpacity = 0.6 + Math.random() * 0.4;
             this.twinkleSpeed = 0.01 + Math.random() * 0.02;
             this.twinklePhase = Math.random() * Math.PI * 2;
         }
@@ -247,10 +247,13 @@ function initBlackHoleAnimations() {
             const twinkle = (Math.sin(this.twinklePhase) + 1) / 2;
             const opacity = this.baseOpacity * (0.5 + 0.5 * twinkle);
             
+            ctx.shadowBlur = 3;
+            ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
             ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
+            ctx.shadowBlur = 0;
         }
     }
 
@@ -266,8 +269,8 @@ function initBlackHoleAnimations() {
             this.distance = distance;
             this.x = centerX + Math.cos(angle) * distance;
             this.y = centerY + Math.sin(angle) * distance;
-            this.size = 0.8 + Math.random() * 0.7;
-            this.opacity = 0.7 + Math.random() * 0.3;
+            this.size = 1.5 + Math.random() * 1;
+            this.opacity = 0.9 + Math.random() * 0.1;
             this.spiralSpeed = 0.008 + Math.random() * 0.006;
             this.fallSpeed = 0.6 + Math.random() * 0.5;
         }
@@ -289,8 +292,8 @@ function initBlackHoleAnimations() {
             const distanceFade = Math.min(1.0, this.distance / 200);
             const finalOpacity = this.opacity * distanceFade;
             
-            ctx.shadowBlur = 4;
-            ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
+            ctx.shadowBlur = 6;
+            ctx.shadowColor = 'rgba(255, 255, 255, 1)';
             ctx.fillStyle = `rgba(255, 255, 255, ${finalOpacity})`;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
