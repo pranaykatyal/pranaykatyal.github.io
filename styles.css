@@ -139,15 +139,15 @@ body > * {
 }
 
 .nav-logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-accent-purple);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
     text-decoration: none;
     transition: color var(--transition-speed);
 }
 
 .nav-logo:hover {
-    color: var(--color-accent-silver);
+    color: var(--color-text-primary);
 }
 
 .nav-menu {
