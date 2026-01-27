@@ -1,7 +1,7 @@
 :root {
-    --color-bg-primary: #0a0a0a;
-    --color-bg-secondary: #1a1a1a;
-    --color-bg-tertiary: #2a2a2a;
+    --color-bg-primary: #020115;
+    --color-bg-secondary: #0a0a1a;
+    --color-bg-tertiary: #1a1a2a;
     --color-text-primary: #e0e0e0;
     --color-text-secondary: #b0b0b0;
     --color-accent-purple: #9d4edd;
@@ -949,7 +949,6 @@ body > * {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background-color: #0a0a0a;
 }
 
 #blackholeImage {
