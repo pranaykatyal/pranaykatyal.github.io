@@ -261,7 +261,7 @@ body > * {
     margin-bottom: 0.5rem;
     font-weight: 500;
     position: absolute;
-    bottom: -180px;
+    bottom: -160px;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -275,7 +275,7 @@ body > * {
     margin-bottom: 0;
     line-height: 1.8;
     position: absolute;
-    bottom: -260px;
+    bottom: -240px;
     left: 0;
     right: 0;
     margin-left: auto;
