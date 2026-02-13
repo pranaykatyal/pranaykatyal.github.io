@@ -254,10 +254,11 @@ body > * {
 }
 
 .hero-title {
-    font-size: 4rem;
-    font-weight: 700;
+    font-family: 'Orbitron', 'Inter', sans-serif;
+    font-size: 5rem;
+    font-weight: 900;
     margin-bottom: 0;
-    background: linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-accent-silver) 100%);
+    background: linear-gradient(135deg, #c77dff 0%, #9d4edd 50%, #e0aaff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -269,6 +270,10 @@ body > * {
     margin-right: auto;
     white-space: nowrap;
     text-align: center;
+    letter-spacing: 3px;
+    text-shadow: 0 0 40px rgba(157, 78, 221, 0.5);
+    filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.4));
+    text-transform: uppercase;
 }
 
 .hero-subtitle {
@@ -1023,6 +1028,7 @@ body > * {
     
     .hero-title {
         font-size: 2.5rem;
+        letter-spacing: 1px;
     }
     
     .hero-subtitle {
@@ -1086,6 +1092,7 @@ body > * {
     
     .hero-title {
         font-size: 2rem;
+        letter-spacing: 0.5px;
     }
     
     .section {
