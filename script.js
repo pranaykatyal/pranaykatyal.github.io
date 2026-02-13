@@ -294,13 +294,13 @@ function initBlackHoleAnimations() {
 
         draw() {
             const distanceFade = Math.min(1.0, this.distance / 200);
-            const finalOpacity = this.opacity * distanceFade;
+            const finalOpacity = this.opacity * distanceFade * 0.8;
             
-            ctx.shadowBlur = 6;
-            ctx.shadowColor = 'rgba(255, 255, 255, 1)';
-            ctx.fillStyle = `rgba(255, 255, 255, ${finalOpacity})`;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = 'rgba(157, 78, 221, 0.8)';
+            ctx.fillStyle = `rgba(200, 180, 255, ${finalOpacity})`;
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
             ctx.fill();
             ctx.shadowBlur = 0;
         }
@@ -389,7 +389,7 @@ function initBlackHoleAnimations() {
     }
 
     const particles = [];
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 60; i++) {
         particles.push(new Particle());
     }
 
