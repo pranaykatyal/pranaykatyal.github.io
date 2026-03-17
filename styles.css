@@ -139,7 +139,7 @@ body > * {
 }
 
 .nav-logo {
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 500;
     color: var(--color-text-secondary);
     text-decoration: none;
@@ -175,6 +175,7 @@ body > * {
 .nav-link {
     color: var(--color-text-secondary);
     text-decoration: none;
+    font-size: 1.1rem;
     font-weight: 500;
     transition: color var(--transition-speed);
     position: relative;
