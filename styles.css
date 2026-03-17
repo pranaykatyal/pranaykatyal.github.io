@@ -918,6 +918,16 @@ body > * {
     box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
 }
 
+.project-link-report {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 1px solid rgba(157, 78, 221, 0.4);
+}
+
+.project-link-report:hover {
+    background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+    box-shadow: 0 5px 15px rgba(157, 78, 221, 0.25);
+}
+
 .project-link svg {
     flex-shrink: 0;
 }
