@@ -750,8 +750,8 @@ body > * {
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    max-width: 1200px;
+    gap: 1.25rem;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -773,7 +773,7 @@ body > * {
 }
 
 .project-image {
-    height: 120px;
+    height: 180px;
     background: linear-gradient(135deg, rgba(157, 78, 221, 0.1) 0%, rgba(123, 44, 191, 0.05) 100%);
     display: flex;
     align-items: center;
@@ -785,10 +785,10 @@ body > * {
 
 .project-image-actual {
     height: auto;
-    min-height: 150px;
-    max-height: 300px;
+    min-height: 180px;
+    max-height: 280px;
     background: var(--color-bg-primary);
-    padding: 1rem;
+    padding: 0;
 }
 
 .project-img {
