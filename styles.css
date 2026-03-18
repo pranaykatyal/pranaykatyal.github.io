@@ -480,6 +480,21 @@ body > * {
     margin-bottom: 0.25rem;
 }
 
+.institution-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+}
+
+.institution-logo {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: brightness(1.1);
+}
+
 .timeline-content .date {
     color: var(--color-text-secondary);
     font-size: 0.95rem;
@@ -489,6 +504,34 @@ body > * {
 .timeline-content .gpa {
     color: var(--color-accent-purple);
     font-weight: 600;
+}
+
+.coursework {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(157, 78, 221, 0.05);
+    border-left: 2px solid var(--color-accent-purple);
+    border-radius: 0 6px 6px 0;
+}
+
+.coursework-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent-purple);
+    margin-bottom: 0.25rem;
+}
+
+.coursework-list {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+.coursework-list:last-child {
+    margin-bottom: 0;
 }
 
 .timeline-content ul {
