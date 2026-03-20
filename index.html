@@ -1,1014 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>Pranay Katyal - Robotics Engineer</title>
-    <link rel="stylesheet" href="styles.css?v=3.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pranay Katyal — Robotics Engineer</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 5rem;
+    }
+
+    /* Video layers */
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-video-wrap video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+      gap: 1rem;
+    }
+    .demo-item {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--bg2);
+      border: 1px solid var(--glass-border);
+      aspect-ratio: 16/9;
+      transition: border-color 0.3s, transform 0.3s var(--ease);
+    }
+    .demo-item:hover {
+      border-color: rgba(167,139,250,0.4);
+      transform: translateY(-2px);
+    }
+    .demo-item iframe, .demo-item video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      object-fit: cover;
+    }
+    .demo-item-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0.5rem 0.75rem;
+      background: linear-gradient(to top, rgba(8,11,16,0.9), transparent);
+      font-size: 0.72rem;
+      color: var(--text-2);
+      font-weight: 500;
+      pointer-events: none;
+      z-index: 2;
+    }
+    @media (max-width: 900px) { .demo-reel-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .demo-reel-grid { grid-template-columns: 1fr; } }
+
+    /* Gradient overlay */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(8,11,16,0.95) 0%, rgba(8,11,16,0.3) 60%, rgba(8,11,16,0.2) 100%),
+        linear-gradient(to right, rgba(8,11,16,0.6) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    /* Content */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease) 0.3s forwards;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 500;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease) 0.5s forwards;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text-2);
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease) 0.7s forwards;
+    }
+    .hero-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease) 0.9s forwards;
+    }
+
+
+
+    /* Social strip */
+    .social-strip {
+      position: absolute;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .social-strip a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      color: var(--text-2);
+      backdrop-filter: blur(8px);
+      transition: all 0.2s;
+      font-size: 0.85rem;
+    }
+    .social-strip a:hover {
+      border-color: var(--purple);
+      color: var(--purple);
+      background: var(--purple-dim);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Quick info strip below hero ── */
+    .info-strip {
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      background: rgba(13,17,23,0.9);
+      padding: 1.5rem 0;
+    }
+    .info-strip .container {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .info-item-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .info-item-value {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .info-sep {
+      width: 1px;
+      height: 30px;
+      background: var(--glass-border);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .social-strip { display: none; }
+      .hero-content { max-width: 100%; }
+      .info-strip .container { gap: 1.5rem; }
+      .info-sep { display: none; }
+    }
+  </style>
 </head>
 <body>
-    <div class="background-grid"></div>
-    
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#home" class="nav-logo">Pranay Katyal | Home</a>
-            <ul class="nav-menu">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#publications" class="nav-link">Publications</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <section id="home" class="hero">
-        <div id="blackhole-container">
-            <!-- Animated GIF black hole as background -->
-            <img id="blackholeImage" src="https://raw.githubusercontent.com/pranaykatyal/pranaykatyal.github.io/main/Assets/blackholegif.gif" alt="Black Hole Animation">
-        </div>
-        
-        <!-- Canvas for particle/ring animations on top -->
-        <canvas id="animationCanvas"></canvas>
-        
-        <div class="hero-content">
-            <h1 class="hero-title">Pranay Katyal</h1>
-            <p class="hero-subtitle">Robotics Engineering Graduate Student</p>
-            <p class="hero-description">Specializing in autonomous multi-agent systems, advanced control theory, and deep learning for perception and planning</p>
-        </div>
-    </section>
+<nav class="site-nav">
+  <a href="index.html" class="nav-name">Pranay <span>Katyal</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="experience.html">Experience</a>
+    <a href="publications.html">Publications</a>
+    <a href="projects.html">Projects</a>
+  </div>
+</nav>
 
-    <section id="about" class="section">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <p>I'm a Robotics Engineering graduate student at WPI specializing in autonomous multi-agent systems, advanced control theory, and deep learning for perception. My work spans the full stack — from Graph-Based Control Barrier Functions and distributed consensus protocols to optical flow-based navigation, UKF state estimation, and real-time neural network deployment on GPU hardware.</p>
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-video-wrap">
+    <!-- Replace with your actual research video filename -->
+    <video autoplay muted loop playsinline src="videos/portfolio landing.mp4"></video>
+  </div>
+  <div class="hero-overlay"></div>
 
-                <p>I'm comfortable across platforms including CrazyFlie quadrotors, Kinova Gen3, AWS DeepRacer, and event-based cameras, working primarily in ROS2, Python, and C++. Currently seeking full-time roles starting May 2026 in aerial robotics, autonomous vehicles, or multi-robot systems.</p>
-                
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <span class="label">Email:</span>
-                        <a href="mailto:pranaykatyal2@gmail.com">pranaykatyal2@gmail.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="label">Phone:</span>
-                        <a href="tel:+17745192925">+1-774-519-2925</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="label">Location:</span>
-                        <span>Worcester, MA</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="education" class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="institution-header">
-                            <img src="images/logos/wpi_logo.png" alt="WPI Logo" class="institution-logo" onerror="this.style.display='none'">
-                            <h3>Master of Science in Robotics Engineering</h3>
-                        </div>
-                        <p class="institution">Worcester Polytechnic Institute, MA, USA</p>
-                        <p class="date">August 2024 – Present</p>
-                        <p class="gpa">GPA: 3.77/4.0</p>
-                        <div class="coursework">
-                            <p class="coursework-label">Completed:</p>
-                            <p class="coursework-list">Foundation of Robotics (A), Robot Dynamics (A), Robot Control (B), Motion Planning (A), Multi-Robot Systems (A), Machine Learning for Robotics (A), Deep Learning (A), Hands-On Autonomous Aerial Vehicles (A), Directed Research (A), Capstone Project (A), Leadership (B)</p>
-                            <p class="coursework-label">Currently Pursuing:</p>
-                            <p class="coursework-list">Computer Vision, Formal Safety Guarantees in Autonomous Robots</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="institution-header">
-                            <img src="images/logos/cu_logo.png" alt="Chandigarh University Logo" class="institution-logo" onerror="this.style.display='none'">
-                            <h3>Bachelor of Science in Mechatronics Engineering</h3>
-                        </div>
-                        <p class="institution">Chandigarh University, PB, India</p>
-                        <p class="date">July 2019 – June 2023</p>
-                        <p class="gpa">GPA: 3.4/4.0</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="experience" class="section">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="institution-header">
-                            <img src="images/logos/automata_logo.png" alt="Automata Lab Logo" class="institution-logo" onerror="this.style.display='none'">
-                            <h3>Research Assistant - Multi-Robot Communication</h3>
-                        </div>
-                        <p class="institution">Automata Lab, WPI (Prof. Kevin Leahy) · <a href="https://wp.wpi.edu/automata/" target="_blank" style="color: var(--color-accent-purple); text-decoration: none; font-size: 0.9rem;">Lab Website →</a></p>
-                        <p class="date">January 2025 – Present</p>
-                        <ul>
-                            <li>Contributed to a research paper under submission on an optical communication system using Prophesee EVK4 event cameras and high-frequency LED signaling, achieving 95%+ decoding accuracy during motion and 7x faster processing over prior EKF-based methods.</li>
-                            <li>Led hardware setup and integration of event camera sensors with ROS2; developed simulation frameworks, visualizations, and performance plots to validate system behavior across motion and lighting conditions.</li>
-                            <li>Implemented tracking pipeline bug fixes and supported real-world testing of the transmitter-receiver system, contributing to reliability ahead of multi-agent deployment.</li>
-                            <li>Integrated AWS DeepRacer with ROS2 Teleop and Nav2 packages for autonomous control and SLAM; employed Prophesee EVK4 event cameras for real-time perception resulting in smoother navigation and faster data exchange.</li>
-                        </ul>
-                    </div>
-                </div>
+  <div class="container">
+    <div class="hero-content">
+      <p class="hero-eyebrow">M.S. Robotics Engineering · WPI · May 2026</p>
+      <h1 class="hero-name">Pranay<br>Katyal</h1>
+      <p class="hero-desc">Autonomous multi-agent systems, control theory, and deep learning for perception. Building robots that navigate, coordinate, and reason in complex environments.</p>
+      <div class="hero-links">
+        <a href="about.html" class="btn btn-solid">About Me</a>
+        <a href="projects.html" class="btn btn-ghost">View Projects</a>
+        <a href="Pranay_Katyal_Robotics_CV.pdf" download class="btn btn-ghost">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          CV
+        </a>
+      </div>
+    </div>
+  </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="institution-header">
-                            <img src="images/logos/wpi_logo.png" alt="WPI Logo" class="institution-logo" onerror="this.style.display='none'">
-                            <h3>Grading Assistant - Multi Robot Systems (RBE510)</h3>
-                        </div>
-                        <p class="institution">Worcester Polytechnic Institute</p>
-                        <p class="date">August 2025 – Present</p>
-                        <ul>
-                            <li>Supporting graduate students in mastering multi-robot systems concepts</li>
-                            <li>Providing targeted assistance on challenging topics</li>
-                        </ul>
-                    </div>
-                </div>
+  <!-- Social strip -->
+  <div class="social-strip">
+    <a href="mailto:pranaykatyal2@gmail.com" title="Email">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </a>
+    <a href="https://github.com/pranaykatyal" target="_blank" title="GitHub">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/pranay-katyal/" target="_blank" title="LinkedIn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <a href="https://pranaykatyal.github.io" title="Portfolio">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </a>
+  </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="institution-header">
-                            <img src="images/logos/wpi_logo.png" alt="WPI Logo" class="institution-logo" onerror="this.style.display='none'">
-                            <h3>Graduate Assistant - Control Systems (3011)</h3>
-                        </div>
-                        <p class="institution">Worcester Polytechnic Institute</p>
-                        <p class="date">September 2024 – March 2025</p>
-                        <ul>
-                            <li>Assisted 60 students with complex control systems concepts</li>
-                            <li>Conducted MATLAB proficiency lab sessions</li>
-                            <li>Contributed to class average increase from 75% to 90%</li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="institution-header">
-                            <img src="images/logos/wpi_logo.png" alt="WPI Logo" class="institution-logo" onerror="this.style.display='none'">
-                            <h3>Secretary - IEEE-RAS WPI Chapter</h3>
-                        </div>
-                        <p class="institution">Worcester Polytechnic Institute</p>
-                        <p class="date">January 2025 – Present</p>
-                        <ul>
-                            <li>Coordinated robotics events, workshops, and technical talks</li>
-                            <li>Managed communications for 50+ student members</li>
-                            <li>Increased chapter participation by 30%</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="publications" class="section">
-        <div class="container">
-            <h2 class="section-title">Publications</h2>
-            <div class="publications-list">
-                <div class="publication-card">
-                    <div class="publication-header">
-                        <span class="publication-badge">Under Review</span>
-                        <h3 class="publication-title">Real-Time Optical Communication Using Event-Based Vision with Moving Transmitters</h3>
-                    </div>
-                    <p class="publication-venue">Paper currently under submission. Full details withheld pending publication.</p>
-                    <p class="publication-abstract">Event cameras offer microsecond temporal resolution and high dynamic range, making them extremely sensitive to scene changes under fast relative motion with an optical transmitter. We develop a complete optical communication system capable of tracking moving transmitters and decoding messages in real time, implementing a Geometry-Aware Unscented Kalman Filter (GA-UKF) for robust tracking.</p>
-                    <div class="publication-contributions">
-                        <p class="contribution-label">My Contributions</p>
-                        <ul>
-                            <li>Hardware setup and integration of Prophesee EVK4 event cameras with ROS2</li>
-                            <li>Simulation frameworks, performance visualizations and plots</li>
-                            <li>Tracking pipeline bug fixes and real-world testing of the transmitter-receiver system</li>
-                        </ul>
-                    </div>
-                    <div class="publication-results">
-                        <div class="result-item">
-                            <span class="result-value">95%+</span>
-                            <span class="result-label">Decoding accuracy during motion</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-value">7x</span>
-                            <span class="result-label">Faster than prior state-of-the-art (GA-UKF vs EKF)</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-value">&ge;1 kHz</span>
-                            <span class="result-label">Transmitting frequency supported</span>
-                        </div>
-                    </div>
-                    <div class="project-tags" style="margin-top: 1.25rem;">
-                        <span class="tag">Event Cameras</span>
-                        <span class="tag">Prophesee EVK4</span>
-                        <span class="tag">ROS2</span>
-                        <span class="tag">Multi-Robot Systems</span>
-                        <span class="tag">Optical Communication</span>
-                        <span class="tag">GA-UKF</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="skills" class="section">
-        <div class="container">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-content">
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Programming Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">MATLAB</span>
-                        <span class="skill-tag">PLC Ladder</span>
-                    </div>
-                </div>
+</section>
 
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Software Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">ROS2 (Humble, Jazzy, Foxy)</span>
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">OpenCV</span>
-                        <span class="skill-tag">CUDA</span>
-                        <span class="skill-tag">VizFlyt</span>
-                        <span class="skill-tag">Fusion 360</span>
-                        <span class="skill-tag">ANSYS</span>
-                        <span class="skill-tag">Simulink</span>
-                        <span class="skill-tag">UiPath Studio</span>
-                        <span class="skill-tag">Docker Desktop</span>
-                        <span class="skill-tag">Git</span>
-                    </div>
-                </div>
+<!-- ── Info strip ── -->
+<div class="info-strip">
+  <div class="container">
+    <div class="info-item">
+      <span class="info-item-label">Institution</span>
+      <span class="info-item-value">Worcester Polytechnic Institute</span>
+    </div>
+    <div class="info-sep"></div>
+    <div class="info-item">
+      <span class="info-item-label">Degree</span>
+      <span class="info-item-value">M.S. Robotics Engineering</span>
+    </div>
+    <div class="info-sep"></div>
+    <div class="info-item">
+      <span class="info-item-label">GPA</span>
+      <span class="info-item-value">3.77 / 4.0</span>
+    </div>
+    <div class="info-sep"></div>
+    <div class="info-item">
+      <span class="info-item-label">Available</span>
+      <span class="info-item-value">May 2026 · OPT eligible</span>
+    </div>
+    <div class="info-sep"></div>
+    <div class="info-item">
+      <span class="info-item-label">Focus</span>
+      <span class="info-item-value">Multi-Agent Systems · Perception · Control</span>
+    </div>
+  </div>
+</div>
 
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Robotics & Hardware Platforms</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">OpenManipulatorX</span>
-                        <span class="skill-tag">Kinova Gen3</span>
-                        <span class="skill-tag">CrazyFlie 2.0</span>
-                        <span class="skill-tag">AWS DeepRacer</span>
-                        <span class="skill-tag">Event-based Cameras (Prophesee EVK4)</span>
-                        <span class="skill-tag">Arduino</span>
-                    </div>
-                </div>
+<footer class="site-footer">
+  <p>© 2026 Pranay Katyal · pranaykatyal.github.io</p>
+</footer>
 
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Specializations</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Multi-Agent Systems</span>
-                        <span class="skill-tag">Control Theory (GCBFs, CBFs)</span>
-                        <span class="skill-tag">Deep Learning</span>
-                        <span class="skill-tag">Computer Vision</span>
-                        <span class="skill-tag">Path Planning</span>
-                        <span class="skill-tag">Sensor Fusion</span>
-                        <span class="skill-tag">Optical Flow</span>
-                        <span class="skill-tag">SLAM</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3 class="skill-category-title">Soft Skills</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Team Leadership</span>
-                        <span class="skill-tag">Project Management</span>
-                        <span class="skill-tag">Technical Communication</span>
-                        <span class="skill-tag">Problem Solving</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="projects" class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">University Projects</h2>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-image project-image-actual">
-                        <img src="images/droneraceopticalflow.jpg" alt="Autonomous Navigation through Windows" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>Autonomous Navigation through Windows using Optical Flow</h3>
-                        <p class="project-date">November 2025 – December 2025</p>
-                        <p>Developed modular three-phase navigation architecture combining RAFT optical flow with TS2P algorithm for bidirectional course traversal through gaps.</p>
-                        <ul class="project-highlights">
-                            <li>3rd place in class with complete bidirectional navigation</li>
-                            <li>0.729s inference time with pure RGB optical flow</li>
-                            <li>Robust gap detection without depth data</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">Computer Vision</span>
-                            <span class="tag">Optical Flow</span>
-                            <span class="tag">RAFT</span>
-                        </div>
-                        <a href="Reports/AAVP5.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            View Report
-                        </a>
-                        <a href="https://youtu.be/VnGCHX8Ou1Q?si=T8cm13R_9t4P3JRC" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                            Watch Demo
-                        </a>
-                        <a href="https://github.com/pranaykatyal/HandsOnAutonomousAerialVehicles/tree/p5pranay/5_project/group8_p5" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-image project-image-actual">
-                        <img src="images/capstone.png" alt="Multi-Agent Formation Control" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>Async vs Sync Consensus for Multi-Agent Formation Control</h3>
-                        <p class="project-date">August 2025 – December 2025</p>
-                        <p>Developed distributed multi-agent control system comparing synchronous and asynchronous consensus protocols for 5-drone pentagon formation with Graph-Based Control Barrier Functions.</p>
-                        <ul class="project-highlights">
-                            <li>Achieved O(n·k) complexity vs O(n²) centralized approaches</li>
-                            <li>50% lower control effort with asynchronous protocol</li>
-                            <li>Zero CBF violations maintaining 2.0m safety distance</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">Multi-Agent Systems</span>
-                            <span class="tag">GCBFs</span>
-                            <span class="tag">Python</span>
-                        </div>
-                        <a href="https://drive.google.com/drive/folders/1-0a0f6ZvcEd2eWcBseCgYn5S0cXMHVvw?usp=sharing" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                                <path d="M8 21h8M12 17v4"/>
-                            </svg>
-                            View Presentation
-                        </a>
-                        <a href="https://github.com/pranaykatyal/DRForCapstone/tree/main/Capstone" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-image project-image-actual">
-                        <img src="images/comparison_01_sample_0054.png" alt="Monocular Depth Estimation" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>Monocular Depth Estimation with Transfer Learning</h3>
-                        <p class="project-date">November 2025 – December 2025</p>
-                        <p>Reproduced M4Depth temporal depth estimation framework fusing sequential camera images with GPS/IMU data.</p>
-                        <ul class="project-highlights">
-                            <li>2.65m RMSE and 98.6% accuracy on synthetic data</li>
-                            <li>Trained on 550 synthetic images after 71 epochs</li>
-                            <li>Discovered critical pose format incompatibility</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">Depth Estimation</span>
-                            <span class="tag">Transfer Learning</span>
-                            <span class="tag">Computer Vision</span>
-                        </div>
-                        <a href="Reports/MLR_Final_Project_Report_compressed.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            View Report
-                        </a>
-                        <a href="https://github.com/pranaykatyal/MachineLearning4Robotics/tree/main/FinalProject/HWFin" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-image project-image-actual">
-                        <img src="images/aavp4image.png" alt="Optical Flow-Based Gap Detection and Navigation" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>Optical Flow-Based Gap Detection and Navigation</h3>
-                        <p class="project-date">October 2025 – November 2025</p>
-                        <p>Implemented RAFT optical flow neural network for texture-invariant gap detection using motion parallax.</p>
-                        <ul class="project-highlights">
-                            <li>89-95% IoU segmentation accuracy</li>
-                            <li>40ms inference rate (25Hz) processing</li>
-                            <li>35 seconds navigation with 10px accuracy</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">Deep Learning</span>
-                            <span class="tag">Neural Networks</span>
-                            <span class="tag">Real-time</span>
-                        </div>
-                        <a href="Reports/AAVP4.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            View Report
-                        </a>
-                        <a href="https://drive.google.com/drive/folders/1dJFffeImlQCjX1auiUwFyV5fhj4K_Xvg?usp=sharing" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                            Watch Demo
-                        </a>
-                        <a href="https://github.com/pranaykatyal/HandsOnAutonomousAerialVehicles/tree/hudsonsP4" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-card">
-                    <div class="project-image project-image-actual">
-                        <img src="images/3dduybins.jpeg" alt="3D Dubins Trajectory" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>LSTM-Based 3D Dubins Trajectory Prediction</h3>
-                        <p class="project-date">October 2025 – November 2025</p>
-                        <p>Developed rotation-invariant LSTM architecture for 3D Dubins airplane path prediction using body-frame representation.</p>
-                        <ul class="project-highlights">
-                            <li>Trained on 1,053,091 synthetic trajectories</li>
-                            <li>5.52m average error (~2% accuracy)</li>
-                            <li>3-layer LSTM with 256 hidden units</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">LSTM</span>
-                            <span class="tag">Trajectory Prediction</span>
-                            <span class="tag">Deep Learning</span>
-                        </div>
-                        <a href="Reports/MLR_HW3_Report.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            View Report
-                        </a>
-                        <a href="https://github.com/pranaykatyal/MachineLearning4Robotics/tree/bc79c1667b2273fc98e93a3afe585fbbcb1fd4c3/HW3" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="project-card">
-                    <div class="project-image project-image-actual">
-                        <img src="images/aavp3image.png" alt="Deep Learning Window Detection for Drone Navigation" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>Deep Learning Window Detection for Drone Navigation</h3>
-                        <p class="project-date">September 2025 – October 2025</p>
-                        <p>Developed U-Net semantic segmentation model trained on 10,000 Blender-generated synthetic images.</p>
-                        <ul class="project-highlights">
-                            <li>1cm goal-reaching accuracy</li>
-                            <li>21ms inference time with visual servoing</li>
-                            <li>35 seconds to complete 3-window course</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">U-Net</span>
-                            <span class="tag">Semantic Segmentation</span>
-                            <span class="tag">Blender</span>
-                        </div>
-                        <a href="Reports/AAVP3.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            View Report
-                        </a>
-                        <a href="https://drive.google.com/drive/folders/1WFAFMGx0Xt5AfFqu6d4ih8-gEFDL7Bnm?usp=sharing" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                            Watch Demo
-                        </a>
-                        <a href="https://github.com/pranaykatyal/HandsOnAutonomousAerialVehicles/tree/project3" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 7 -->
-                <div class="project-card">
-                    <div class="project-image project-image-actual">
-                        <img src="images/aavp2image.png" alt="Quadrotor Path Planning and Trajectory Optimization" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>Quadrotor Path Planning and Trajectory Optimization</h3>
-                        <p class="project-date">September 2025 – October 2025</p>
-                        <p>Implemented RRT* path planning with 7th-order polynomial minimum-snap trajectory generation.</p>
-                        <ul class="project-highlights">
-                            <li>79% waypoint reduction, 94.7% path efficiency</li>
-                            <li>5mm final positioning accuracy</li>
-                            <li>1.5cm average tracking error with PID control</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">Path Planning</span>
-                            <span class="tag">RRT*</span>
-                            <span class="tag">Control Systems</span>
-                        </div>
-                        <a href="Reports/AAVP2.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            Report — Phase 1
-                        </a>
-                        <a href="Reports/AAVP2_phase2.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            Report — Phase 2
-                        </a>
-                        <a href="https://drive.google.com/drive/folders/14fKImx4btvPeq52bd4vC4GYgGMfyh-vo?usp=sharing" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                            Demo — Phase 1
-                        </a>
-                        <a href="https://youtu.be/o8OxrDLV46w?si=CBXFM6GA6xAoqIk6" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                            Demo — Phase 2
-                        </a>
-                        <a href="https://github.com/pranaykatyal/HandsOnAutonomousAerialVehicles/tree/project2b" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 8 -->
-                <div class="project-card">
-                    <div class="project-image project-image-actual">
-                        <img src="images/predictions.png" alt="Vehicle Classification" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>Vehicle Classification via ResNet18 Transfer Learning</h3>
-                        <p class="project-date">September 2025 – October 2025</p>
-                        <p>Applied two-phase transfer learning with pretrained ResNet18 for 10-class vehicle classification.</p>
-                        <ul class="project-highlights">
-                            <li>96.0% validation accuracy achieved</li>
-                            <li>Minimal overfitting (95.4% training, 96.0% validation)</li>
-                            <li>Training completed in 22 minutes on RTX 4080</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">ResNet18</span>
-                            <span class="tag">Transfer Learning</span>
-                            <span class="tag">CNN</span>
-                        </div>
-                        <a href="Reports/MLR_HW2_Report.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            View Report
-                        </a>
-                        <a href="https://github.com/pranaykatyal/MachineLearning4Robotics/tree/bc79c1667b2273fc98e93a3afe585fbbcb1fd4c3/HW2" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 9 -->
-                <div class="project-card">
-                    <div class="project-image project-image-actual">
-                        <img src="images/aavp1image.png" alt="Unscented Kalman Filter for Attitude Estimation" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>Unscented Kalman Filter for Attitude Estimation</h3>
-                        <p class="project-date">August 2025 – September 2025</p>
-                        <p>Implemented UKF for nonlinear attitude estimation using quaternion representation and sigma point generation.</p>
-                        <ul class="project-highlights">
-                            <li>Superior performance over Complementary filters</li>
-                            <li>Quaternion constraint handling (unit norm)</li>
-                            <li>6D/7D state space transformations</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">Kalman Filter</span>
-                            <span class="tag">State Estimation</span>
-                            <span class="tag">Sensor Fusion</span>
-                        </div>
-                        <a href="Reports/AAVP1A.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            Report — 1A
-                        </a>
-                        <a href="Reports/AAVP1B.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            Report — 1B
-                        </a>
-                        <a href="https://drive.google.com/drive/folders/1GL-p1g7so_SICBe3jr1nLcd5VnRqMIyi?usp=sharing" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                            Demo — 1A
-                        </a>
-                        <a href="https://drive.google.com/drive/folders/12D0hPfsTfochTBFKuDVKrhR7JXtZdsr5?usp=sharing" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                            Demo — 1B
-                        </a>
-                        <a href="https://github.com/pranaykatyal/HandsOnAutonomousAerialVehicles/tree/project2b/1b_project/group8_p1b" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 10 -->
-                <div class="project-card">
-                    <div class="project-image project-image-actual">
-                        <img src="images/mlrhw1image.png" alt="Neural Network Control Allocator for Ship Thrusters" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>Neural Network Control Allocator for Ship Thrusters</h3>
-                        <p class="project-date">August 2025 – September 2025</p>
-                        <p>Implemented LSTM encoder-decoder architecture replacing computationally expensive Sequential Quadratic Programming.</p>
-                        <ul class="project-highlights">
-                            <li>Trained on 1 million synthetic samples</li>
-                            <li>Less than 6% error for sway/yaw commands</li>
-                            <li>Fast adaptable control allocation</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">LSTM</span>
-                            <span class="tag">Control Allocation</span>
-                            <span class="tag">Neural Networks</span>
-                        </div>
-                        <a href="Reports/MLR_HW1_Report.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            View Report
-                        </a>
-                        <a href="https://github.com/pranaykatyal/MachineLearning4Robotics/tree/bc79c1667b2273fc98e93a3afe585fbbcb1fd4c3/HW%20Folder" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 11 -->
-                <div class="project-card">
-                    <div class="project-image project-image-actual">
-                        <img src="images/aavp0image.png" alt="IMU Sensor Fusion for Orientation Tracking" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>IMU Sensor Fusion for Orientation Tracking</h3>
-                        <p class="project-date">August 2025</p>
-                        <p>Implemented attitude estimation using gyroscope integration, accelerometer-based tilt estimation, and complementary filter fusion.</p>
-                        <ul class="project-highlights">
-                            <li>SLERP for timestamp synchronization</li>
-                            <li>Coordinate frame transformations (ZYX Euler)</li>
-                            <li>Bias correction and drift mitigation</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">IMU</span>
-                            <span class="tag">Sensor Fusion</span>
-                            <span class="tag">Orientation Tracking</span>
-                        </div>
-                        <a href="Reports/AAVP0.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            View Report
-                        </a>
-                        <a href="https://drive.google.com/drive/folders/1ZqmVCcCZM4RTusXnCexyhX69Aq9I9Xr-?usp=sharing" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                            Watch Demo
-                        </a>
-                        <a href="https://github.com/pranaykatyal/HandsOnAutonomousAerialVehicles/tree/project2b/pkatyal_p0" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 12 -->
-                <div class="project-card">
-                    <div class="project-image project-image-actual">
-                        <img src="images/foundationopenmx.png" alt="Control of 4-DoF OpenManipulatorX Robotic Arm" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3>Control of 4-DoF OpenManipulatorX Robotic Arm</h3>
-                        <p class="project-date">November 2024 – December 2024</p>
-                        <p>Led team development of position and velocity kinematics for 4-DOF robotic arm using ROS2.</p>
-                        <ul class="project-highlights">
-                            <li>97.5% control accuracy achieved</li>
-                            <li>Integrated Dynamixel motors with PD controller</li>
-                            <li>Repeatable, high-precision motions</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">ROS2</span>
-                            <span class="tag">Kinematics</span>
-                            <span class="tag">Robotics</span>
-                        </div>
-                        <a href="Reports/ReportPhase1.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            Report — Phase 1
-                        </a>
-                        <a href="Reports/ReportPhase2.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            Report — Phase 2
-                        </a>
-                        <a href="Reports/ReportPhase3_CurrentControlMode.pdf" target="_blank" class="project-link project-link-report">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                            Report — Phase 3
-                        </a>
-                        <a href="https://drive.google.com/drive/folders/1uUyBGhsbTQXOb3qLJxjEvXgl-PlNuUrz?usp=sharing" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                            Watch Demo
-                        </a>
-                        <a href="https://github.com/pranaykatyal/OpenManipulatorXRoboticArmKinematics" target="_blank" class="project-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            View on GitHub
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 13 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                                <polyline points="9 22 9 12 15 12 15 22"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Quadrotor Controller Implementation (CrazyFlie 2.0)</h3>
-                        <p class="project-date">November 2024 – December 2024</p>
-                        <p>Designed and tuned PD and LQR controllers for the CrazyFlie 2.0 quadcopter using MATLAB.</p>
-                        <ul class="project-highlights">
-                            <li>10-second path tracking demonstrated</li>
-                            <li>LQR 17.28% faster than PD controllers</li>
-                            <li>Enhanced control stability and precision</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">LQR</span>
-                            <span class="tag">PID Control</span>
-                            <span class="tag">MATLAB</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 14 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                <polyline points="17 8 12 3 7 8"/>
-                                <line x1="12" y1="3" x2="12" y2="15"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Benchmarking Advanced IK Algorithms</h3>
-                        <p class="project-date">March 2025 – May 2025</p>
-                        <p>Implemented multiple inverse kinematics algorithms and benchmarked modern methods on 6 DoF Kinova Gen3 arm.</p>
-                        <ul class="project-highlights">
-                            <li>Product of Exponentials for forward kinematics</li>
-                            <li>SVDDLS, IDLS, PSO algorithm comparison</li>
-                            <li>Real-time VR control integration</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">Inverse Kinematics</span>
-                            <span class="tag">MATLAB</span>
-                            <span class="tag">VR Integration</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 15 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Chance-Constrained RRT Motion Planning</h3>
-                        <p class="project-date">March 2025 – May 2025</p>
-                        <p>Integrated Chance-Constrained RRT algorithm with OMPL library in C++ for robust path planning.</p>
-                        <ul class="project-highlights">
-                            <li>Sub-second planning times achieved</li>
-                            <li>Docker for reproducible development</li>
-                            <li>Probabilistic safety constraint evaluation</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">Motion Planning</span>
-                            <span class="tag">C++</span>
-                            <span class="tag">OMPL</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 16 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-                                <line x1="9" y1="9" x2="9.01" y2="9"/>
-                                <line x1="15" y1="9" x2="15.01" y2="9"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Design and Testing of Robotic Dog (SPOT)</h3>
-                        <p class="project-date">January 2024 – March 2024</p>
-                        <p>Engineered and tested a robotic dog using Fusion 360 for design and ANSYS for load analysis.</p>
-                        <ul class="project-highlights">
-                            <li>Withstands static loads up to 1000g</li>
-                            <li>Structural performance optimization</li>
-                            <li>Reliable performance in various scenarios</li>
-                        </ul>
-                        <div class="project-tags">
-                            <span class="tag">Fusion 360</span>
-                            <span class="tag">ANSYS</span>
-                            <span class="tag">Mechanical Design</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="contact" class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <p>I'm currently seeking full-time positions starting May 2026 in aerial robotics, autonomous vehicles, or multi-robot systems.</p>
-                <div class="contact-links">
-                    <a href="mailto:pranaykatyal2@gmail.com" class="contact-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        pranaykatyal2@gmail.com
-                    </a>
-                    <a href="mailto:pkatyal@wpi.edu" class="contact-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        pkatyal@wpi.edu
-                    </a>
-                    <a href="https://github.com/pranaykatyal" target="_blank" class="contact-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                        GitHub Profile
-                    </a>
-                    <a href="https://www.linkedin.com/in/pranay-katyal/" target="_blank" class="contact-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                        LinkedIn Profile
-                    </a>
-                    <a href="Pranay_Katyal_Robotics_CV.pdf" download class="contact-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="3" x2="12" y2="15"></line>
-                        </svg>
-                        Download CV
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        <footer class="footer">
-        <p>&copy; 2025 Pranay Katyal. All rights reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => ro.observe(el));
+</script>
 </body>
 </html>
