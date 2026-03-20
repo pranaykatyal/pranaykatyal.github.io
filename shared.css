@@ -91,10 +91,8 @@ nav.site-nav {
   font-size: 0.58rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--purple);
+  color: var(--text-2);
   white-space: nowrap;
-  opacity: 1;
-  text-shadow: 0 0 12px rgba(192,132,252,0.5);
 }
 .nav-name-sub {
   font-family: var(--mono);
