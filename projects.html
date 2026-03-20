@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Pranay Katyal</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ── Filter bar ── */
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 4px;
+      border: 1px solid var(--glass-border);
+      background: transparent;
+      color: var(--text-3);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--purple);
+      color: var(--purple);
+      background: var(--purple-dim);
+    }
+
+    /* ── Grid ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    /* ── Card ── */
+    .proj-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      cursor: pointer;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s var(--ease);
+      display: flex;
+      flex-direction: column;
+    }
+    .proj-card:hover {
+      border-color: rgba(167,139,250,0.3);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      transform: translateY(-2px);
+    }
+    .proj-card.open {
+      border-color: rgba(167,139,250,0.5);
+      box-shadow: 0 0 0 1px rgba(167,139,250,0.2), 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    /* Image / placeholder */
+    .proj-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      position: relative;
+      background: var(--bg2);
+      flex-shrink: 0;
+    }
+    .proj-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s var(--ease);
+    }
+    .proj-card:hover .proj-thumb img { transform: scale(1.04); }
+    .proj-thumb-icon {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--bg2), var(--bg1));
+      color: var(--text-3);
+    }
+
+    /* Collapsed info */
+    .proj-collapsed {
+      padding: 0.9rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex: 1;
+    }
+    .proj-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.35;
+    }
+    .proj-date {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-3);
+      letter-spacing: 0.05em;
+    }
+    .proj-tags-mini {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.2rem;
+    }
+    .proj-tags-mini .tag {
+      font-size: 0.62rem;
+      padding: 0.15rem 0.5rem;
+    }
+    .proj-expand-hint {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--text-3);
+      letter-spacing: 0.08em;
+      margin-top: auto;
+      padding-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.2s;
+    }
+    .proj-card:hover .proj-expand-hint,
+    .proj-card.open .proj-expand-hint { color: var(--purple); }
+
+    /* ── Expanded panel — full width row below ── */
+    .proj-detail-row {
+      grid-column: 1 / -1;
+      display: none;
+      animation: slideDown 0.35s var(--ease);
+    }
+    .proj-detail-row.visible { display: block; }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .proj-detail-inner {
+      background: var(--bg1);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .proj-detail-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      grid-column: 1 / -1;
+    }
+    .proj-detail-desc {
+      font-size: 0.875rem;
+      color: var(--text-2);
+      line-height: 1.75;
+    }
+    .proj-highlights {
+      padding-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .proj-highlights li {
+      font-size: 0.82rem;
+      color: var(--text-2);
+      position: relative;
+    }
+    .proj-highlights li::before {
+      content: '·';
+      position: absolute; left: -0.8rem;
+      color: var(--purple);
+    }
+    .proj-hl-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 0.5rem;
+    }
+    .proj-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      grid-column: 1 / -1;
+    }
+    .proj-close {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .proj-close button {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--text-3);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .proj-close button:hover { border-color: var(--purple); color: var(--purple); }
+
+    @media (max-width: 1100px) { .projects-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 768px)  { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px)  {
+      .projects-grid { grid-template-columns: 1fr; }
+      .proj-detail-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-name">Pranay <span>Katyal</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="experience.html">Experience</a>
+    <a href="publications.html">Publications</a>
+    <a href="projects.html" class="active">Projects</a>
+  </div>
+</nav>
+
+<div class="page-body">
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Work</p>
+      <h2 class="section-title">University <em>Projects</em></h2>
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="aerial">Aerial Robotics</button>
+        <button class="filter-btn" data-filter="vision">Vision & Perception</button>
+        <button class="filter-btn" data-filter="control">Control & Planning</button>
+        <button class="filter-btn" data-filter="ml">Machine Learning</button>
+        <button class="filter-btn" data-filter="multi">Multi-Agent</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+
+        <!-- ─── PROJECT DATA ─── -->
+        <!-- Each .proj-card gets data-cats for filtering -->
+        <!-- Detail rows are inserted by JS after each row of 4 -->
+
+        <div class="proj-card reveal" data-cats="aerial vision" data-id="p1">
+          <div class="proj-thumb">
+            <img src="images/droneraceopticalflow.jpg" alt="Autonomous Navigation" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Autonomous Navigation through Windows — Optical Flow</p>
+            <p class="proj-date">Nov 2025 – Dec 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">RAFT</span><span class="tag">Optical Flow</span><span class="tag">VizFlyt</span>
+            </div>
+            <p class="proj-expand-hint">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              Details
+            </p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="multi control" data-id="p2">
+          <div class="proj-thumb">
+            <img src="images/capstone.png" alt="Multi-Agent Formation" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Async vs Sync Consensus — Multi-Agent Formation (GCBFs)</p>
+            <p class="proj-date">Aug 2025 – Dec 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">GCBFs</span><span class="tag">Python</span><span class="tag">Multi-Agent</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="vision ml" data-id="p3">
+          <div class="proj-thumb">
+            <img src="images/comparison_01_sample_0054.png" alt="Depth Estimation" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Monocular Depth Estimation with Transfer Learning</p>
+            <p class="proj-date">Nov 2025 – Dec 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">M4Depth</span><span class="tag">PyTorch</span><span class="tag">GPS/IMU</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="aerial vision" data-id="p4">
+          <div class="proj-thumb">
+            <img src="images/aavp4image.png" alt="Gap Detection" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Optical Flow-Based Gap Detection and Navigation</p>
+            <p class="proj-date">Oct 2025 – Nov 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">RAFT</span><span class="tag">Visual Servoing</span><span class="tag">Blender</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="ml" data-id="p5">
+          <div class="proj-thumb">
+            <img src="images/3dduybins.jpeg" alt="Dubins Trajectory" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">LSTM-Based 3D Dubins Trajectory Prediction</p>
+            <p class="proj-date">Oct 2025 – Nov 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">LSTM</span><span class="tag">PyTorch</span><span class="tag">Trajectory</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="aerial vision" data-id="p6">
+          <div class="proj-thumb">
+            <img src="images/aavp3image.png" alt="Window Detection" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Deep Learning Window Detection for Drone Navigation</p>
+            <p class="proj-date">Sep 2025 – Oct 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">U-Net</span><span class="tag">PnP</span><span class="tag">Blender</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="aerial control" data-id="p7">
+          <div class="proj-thumb">
+            <img src="images/aavp2image.png" alt="Path Planning" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Quadrotor Path Planning & Trajectory Optimization</p>
+            <p class="proj-date">Sep 2025 – Oct 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">RRT*</span><span class="tag">Min-Snap</span><span class="tag">PID</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="ml vision" data-id="p8">
+          <div class="proj-thumb">
+            <img src="images/predictions.png" alt="Vehicle Classification" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Vehicle Classification via ResNet18 Transfer Learning</p>
+            <p class="proj-date">Sep 2025 – Oct 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">ResNet18</span><span class="tag">PyTorch</span><span class="tag">CNN</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="aerial control" data-id="p9">
+          <div class="proj-thumb">
+            <img src="images/aavp1image.png" alt="UKF" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Unscented Kalman Filter for Attitude Estimation</p>
+            <p class="proj-date">Aug 2025 – Sep 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">UKF</span><span class="tag">Quaternions</span><span class="tag">IMU</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="ml control" data-id="p10">
+          <div class="proj-thumb">
+            <img src="images/mlrhw1image.png" alt="Ship Thrusters" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Neural Network Control Allocator for Ship Thrusters</p>
+            <p class="proj-date">Aug 2025 – Sep 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">LSTM</span><span class="tag">Control Allocation</span><span class="tag">Physics Loss</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="aerial control" data-id="p11">
+          <div class="proj-thumb">
+            <img src="images/aavp0image.png" alt="IMU Fusion" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">IMU Sensor Fusion for Orientation Tracking</p>
+            <p class="proj-date">Aug 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">IMU</span><span class="tag">SLERP</span><span class="tag">Complementary Filter</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="control" data-id="p12">
+          <div class="proj-thumb">
+            <img src="images/foundationopenmx.png" alt="OpenManipulatorX" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Control of 4-DoF OpenManipulatorX Robotic Arm</p>
+            <p class="proj-date">Nov 2024 – Dec 2024</p>
+            <div class="proj-tags-mini">
+              <span class="tag">ROS2</span><span class="tag">Kinematics</span><span class="tag">Dynamixel</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="aerial control" data-id="p13">
+          <div class="proj-thumb">
+            <div class="proj-thumb-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Quadrotor Controller Implementation (CrazyFlie 2.0)</p>
+            <p class="proj-date">Nov 2024 – Dec 2024</p>
+            <div class="proj-tags-mini">
+              <span class="tag">LQR</span><span class="tag">PID</span><span class="tag">MATLAB</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="control" data-id="p14">
+          <div class="proj-thumb">
+            <div class="proj-thumb-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Benchmarking Advanced IK Algorithms (Kinova Gen3)</p>
+            <p class="proj-date">Mar 2025 – May 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">IK</span><span class="tag">MATLAB</span><span class="tag">VR</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="control" data-id="p15">
+          <div class="proj-thumb">
+            <div class="proj-thumb-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Chance-Constrained RRT Motion Planning (OMPL)</p>
+            <p class="proj-date">Mar 2025 – May 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">C++</span><span class="tag">OMPL</span><span class="tag">Docker</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+        <div class="proj-card reveal" data-cats="control" data-id="p16">
+          <div class="proj-thumb">
+            <div class="proj-thumb-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Design and Testing of Robotic Dog (SPOT)</p>
+            <p class="proj-date">Jan 2024 – Mar 2024</p>
+            <div class="proj-tags-mini">
+              <span class="tag">Fusion 360</span><span class="tag">ANSYS</span><span class="tag">Mechanical</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
+      </div><!-- /projects-grid -->
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>© 2026 Pranay Katyal · pranaykatyal.github.io</p>
+  </footer>
+</div>
+
+<script>
+// ── Project detail data ──
+const projectData = {
+  p1: {
+    title: 'Autonomous Navigation through Windows using Optical Flow',
+    desc: 'Developed a modular three-phase navigation architecture combining RAFT optical flow with the TS2P (Temporally Stacked Spatial Parallax) algorithm for bidirectional course traversal through rectangular windows and irregular gaps.',
+    highlights: ['3rd place in class with complete bidirectional navigation in 264.6s', '0.729s inference time with pure RGB optical flow', 'Robust gap detection without depth data'],
+    links: [
+      { label: 'View Report', href: 'Reports/AAVP5.pdf', type: 'report' },
+      { label: 'Watch Demo', href: 'https://youtu.be/VnGCHX8Ou1Q?si=T8cm13R_9t4P3JRC', type: 'video' },
+      { label: 'GitHub', href: 'https://github.com/pranaykatyal/HandsOnAutonomousAerialVehicles/tree/p5pranay/5_project/group8_p5', type: 'github' },
+    ]
+  },
+  p2: {
+    title: 'Async vs Sync Consensus for Multi-Agent Formation Control with GCBFs',
+    desc: 'Developed a distributed multi-agent control system comparing synchronous and asynchronous consensus protocols for a 5-drone pentagon formation tracking moving targets through obstacles with realistic constraints.',
+    highlights: ['O(n·k) complexity vs O(n²) centralized approaches', '50% lower control effort with async protocol (0.024 vs 0.048 m/s²)', 'Zero CBF violations maintaining 2.0m safety distance'],
+    links: [
+      { label: 'Presentation', href: 'https://drive.google.com/drive/folders/1-0a0f6ZvcEd2eWcBseCgYn5S0cXMHVvw?usp=sharing', type: 'video' },
+      { label: 'GitHub', href: 'https://github.com/pranaykatyal/DRForCapstone/tree/main/Capstone', type: 'github' },
+    ]
+  },
+  p3: {
+    title: 'Monocular Depth Estimation with Transfer Learning',
+    desc: 'Reproduced the M4Depth temporal depth estimation framework fusing sequential camera images with GPS/IMU data, training on the synthetic MidAir dataset and transferring to the real-world UseGeo dataset.',
+    highlights: ['2.65m RMSE and 98.6% accuracy (δ<1.25) on synthetic data', 'Trained 71 epochs using a pretrained checkpoint', 'Identified critical pose format incompatibility preventing direct transfer'],
+    links: [
+      { label: 'View Report', href: 'Reports/MLR_Final_Project_Report_compressed.pdf', type: 'report' },
+      { label: 'GitHub', href: 'https://github.com/pranaykatyal/MachineLearning4Robotics/tree/main/FinalProject/HWFin', type: 'github' },
+    ]
+  },
+  p4: {
+    title: 'Optical Flow-Based Gap Detection and Navigation',
+    desc: 'Implemented RAFT optical flow neural network for texture-invariant gap detection using motion parallax, with a visual servoing controller using optical flow magnitude thresholding and connected component analysis.',
+    highlights: ['89–95% IoU segmentation accuracy regardless of texture', '40ms inference rate (25Hz), 35s navigation with 10px accuracy', 'Validated on Blender-generated test data and VizFlyt simulation'],
+    links: [
+      { label: 'View Report', href: 'Reports/AAVP4.pdf', type: 'report' },
+      { label: 'Watch Demo', href: 'https://drive.google.com/drive/folders/1dJFffeImlQCjX1auiUwFyV5fhj4K_Xvg?usp=sharing', type: 'video' },
+      { label: 'GitHub', href: 'https://github.com/pranaykatyal/HandsOnAutonomousAerialVehicles/tree/hudsonsP4', type: 'github' },
+    ]
+  },
+  p5: {
+    title: 'LSTM-Based 3D Dubins Trajectory Prediction',
+    desc: 'Developed a rotation-invariant LSTM architecture for 3D Dubins airplane path prediction using body-frame representation, trained on 1,053,091 synthetic trajectories with variable-length sequences.',
+    highlights: ['5.52m average error (~2%), 14.59m max error (~6%)', '3-layer LSTM (256 hidden units), sequence-to-sequence design', 'Masked MSE loss, 4D input (goal position + climb angle)'],
+    links: [
+      { label: 'View Report', href: 'Reports/MLR_HW3_Report.pdf', type: 'report' },
+      { label: 'GitHub', href: 'https://github.com/pranaykatyal/MachineLearning4Robotics/tree/bc79c1667b2273fc98e93a3afe585fbbcb1fd4c3/HW3', type: 'github' },
+    ]
+  },
+  p6: {
+    title: 'Deep Learning Window Detection for Drone Navigation',
+    desc: 'Developed a U-Net semantic segmentation model trained on 10,000 Blender-generated synthetic images with extensive augmentation for robust window frame detection, deployed on VizFlyt simulator on the WPI Turing HPC cluster.',
+    highlights: ['1cm goal-reaching accuracy, 21ms inference time', '35 seconds to complete 3-window navigation course', 'PnP pose estimation + depth-based control scaling'],
+    links: [
+      { label: 'View Report', href: 'Reports/AAVP3.pdf', type: 'report' },
+      { label: 'Watch Demo', href: 'https://drive.google.com/drive/folders/1WFAFMGx0Xt5AfFqu6d4ih8-gEFDL7Bnm?usp=sharing', type: 'video' },
+      { label: 'GitHub', href: 'https://github.com/pranaykatyal/HandsOnAutonomousAerialVehicles/tree/project3', type: 'github' },
+    ]
+  },
+  p7: {
+    title: 'Quadrotor Path Planning and Trajectory Optimization',
+    desc: 'Implemented RRT* path planning with 79% waypoint reduction coupled with 7th-order polynomial minimum-snap trajectory generation. Integrated with VizFlyt photorealistic simulator on the WPI Turing HPC Cluster.',
+    highlights: ['79% waypoint reduction (48→10 nodes), 94.7% path efficiency', '5mm final positioning accuracy, 1.5cm avg tracking error', '15.3 second mission completion with zero collisions'],
+    links: [
+      { label: 'Report — Phase 1', href: 'Reports/AAVP2.pdf', type: 'report' },
+      { label: 'Report — Phase 2', href: 'Reports/AAVP2_phase2.pdf', type: 'report' },
+      { label: 'Demo — Phase 1', href: 'https://drive.google.com/drive/folders/14fKImx4btvPeq52bd4vC4GYgGMfyh-vo?usp=sharing', type: 'video' },
+      { label: 'Demo — Phase 2', href: 'https://youtu.be/o8OxrDLV46w?si=CBXFM6GA6xAoqIk6', type: 'video' },
+      { label: 'GitHub', href: 'https://github.com/pranaykatyal/HandsOnAutonomousAerialVehicles/tree/project2b', type: 'github' },
+    ]
+  },
+  p8: {
+    title: 'Vehicle Classification via ResNet18 Transfer Learning',
+    desc: 'Applied two-phase transfer learning with pretrained ResNet18 for 10-class vehicle classification: 20 epochs with frozen backbone followed by 30 epochs of full fine-tuning.',
+    highlights: ['96.0% validation accuracy on 1,400 training images', 'Minimal overfitting (95.4% train vs 96.0% val)', '22 minutes training on NVIDIA RTX 4080'],
+    links: [
+      { label: 'View Report', href: 'Reports/MLR_HW2_Report.pdf', type: 'report' },
+      { label: 'GitHub', href: 'https://github.com/pranaykatyal/MachineLearning4Robotics/tree/bc79c1667b2273fc98e93a3afe585fbbcb1fd4c3/HW2', type: 'github' },
+    ]
+  },
+  p9: {
+    title: 'Unscented Kalman Filter for Attitude Estimation',
+    desc: 'Implemented a UKF for nonlinear attitude estimation using quaternion representation, sigma point generation, and iterative quaternion mean computation via gradient descent.',
+    highlights: ['Superior performance over Complementary and Madgwick filters', 'Quaternion constraint handling (unit norm enforcement)', '6D/7D state space transformations'],
+    links: [
+      { label: 'Report — 1A', href: 'Reports/AAVP1A.pdf', type: 'report' },
+      { label: 'Report — 1B', href: 'Reports/AAVP1B.pdf', type: 'report' },
+      { label: 'Demo — 1A', href: 'https://drive.google.com/drive/folders/1GL-p1g7so_SICBe3jr1nLcd5VnRqMIyi?usp=sharing', type: 'video' },
+      { label: 'Demo — 1B', href: 'https://drive.google.com/drive/folders/12D0hPfsTfochTBFKuDVKrhR7JXtZdsr5?usp=sharing', type: 'video' },
+      { label: 'GitHub', href: 'https://github.com/pranaykatyal/HandsOnAutonomousAerialVehicles/tree/project2b/1b_project/group8_p1b', type: 'github' },
+    ]
+  },
+  p10: {
+    title: 'Neural Network Control Allocator for Ship Thrusters',
+    desc: 'Implemented an LSTM encoder-decoder architecture replacing computationally expensive Sequential Quadratic Programming for ship thruster control allocation. Trained on 1 million synthetic samples with composite physics loss.',
+    highlights: ['<6% error for sway, yaw, and mixed force commands', 'Composite loss enforcing physics, actuator limits, energy, forbidden sectors', 'Fixed inference time vs. iterative SQP'],
+    links: [
+      { label: 'View Report', href: 'Reports/MLR_HW1_Report.pdf', type: 'report' },
+      { label: 'GitHub', href: 'https://github.com/pranaykatyal/MachineLearning4Robotics/tree/bc79c1667b2273fc98e93a3afe585fbbcb1fd4c3/HW%20Folder', type: 'github' },
+    ]
+  },
+  p11: {
+    title: 'IMU Sensor Fusion for Orientation Tracking',
+    desc: 'Implemented attitude estimation using gyroscope integration, accelerometer-based tilt estimation, and complementary filter fusion with SLERP for timestamp synchronization.',
+    highlights: ['SLERP for smooth timestamp synchronization', 'ZYX Euler coordinate frame transformations', 'Bias correction and drift mitigation'],
+    links: [
+      { label: 'View Report', href: 'Reports/AAVP0.pdf', type: 'report' },
+      { label: 'Watch Demo', href: 'https://drive.google.com/drive/folders/1ZqmVCcCZM4RTusXnCexyhX69Aq9I9Xr-?usp=sharing', type: 'video' },
+      { label: 'GitHub', href: 'https://github.com/pranaykatyal/HandsOnAutonomousAerialVehicles/tree/project2b/pkatyal_p0', type: 'github' },
+    ]
+  },
+  p12: {
+    title: 'Control of 4-DoF OpenManipulatorX Robotic Arm',
+    desc: 'Led a team of 3 developing position and velocity kinematics for the 4-DOF robotic arm using ROS2, integrating Dynamixel motors with a PD controller in effort control mode.',
+    highlights: ['97.5% control accuracy with repeatable high-precision motions', 'Position + velocity kinematics in ROS2', 'Dynamixel motor integration in effort control mode'],
+    links: [
+      { label: 'Report — Phase 1', href: 'Reports/ReportPhase1.pdf', type: 'report' },
+      { label: 'Report — Phase 2', href: 'Reports/ReportPhase2.pdf', type: 'report' },
+      { label: 'Report — Phase 3', href: 'Reports/ReportPhase3_CurrentControlMode.pdf', type: 'report' },
+      { label: 'Watch Demo', href: 'https://drive.google.com/drive/folders/1uUyBGhsbTQXOb3qLJxjEvXgl-PlNuUrz?usp=sharing', type: 'video' },
+      { label: 'GitHub', href: 'https://github.com/pranaykatyal/OpenManipulatorXRoboticArmKinematics', type: 'github' },
+    ]
+  },
+  p13: {
+    title: 'Quadrotor Controller Implementation (CrazyFlie 2.0)',
+    desc: 'Designed and tuned PD and LQR controllers for the CrazyFlie 2.0 quadcopter using MATLAB, demonstrating 10-second path tracking for both controller designs.',
+    highlights: ['LQR 17.28% faster performance vs PD controllers', '10-second path tracking demonstrated', 'Enhanced control stability and precision'],
+    links: []
+  },
+  p14: {
+    title: 'Benchmarking Advanced IK Algorithms (Kinova Gen3)',
+    desc: 'Implemented Product of Exponentials for forward kinematics and multiple IK algorithms in MATLAB. Conducted benchmark study of modern IK algorithms on a 6-DOF Kinova Gen3 arm with real-time VR headset control.',
+    highlights: ['SVDDLS, IDLS, PSO algorithm comparison', 'Led SVDDLS implementation translating research to code', 'Real-time VR headset control integration'],
+    links: []
+  },
+  p15: {
+    title: 'Chance-Constrained RRT Motion Planning with OMPL',
+    desc: 'Integrated a Chance-Constrained RRT algorithm with the Open Motion Planning Library (OMPL) in C++ for robust path planning under probabilistic safety constraints.',
+    highlights: ['<1 second planning times under varying probabilistic constraints', 'Docker for fully reproducible development', 'Led core algorithm development + OMPL integration'],
+    links: []
+  },
+  p16: {
+    title: 'Design and Testing of Robotic Dog (SPOT)',
+    desc: 'Engineered and tested a robotic dog using Fusion 360 for design and ANSYS for load analysis, validating structural performance under static loads.',
+    highlights: ['Withstands static loads up to 1000g', 'Structural performance optimization via FEA', 'Validated across multiple real-world scenarios'],
+    links: []
+  },
+};
+
+// ── Link icon helpers ──
+function linkIcon(type) {
+  if (type === 'github') return `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`;
+  if (type === 'video') return `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
+  return `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`;
+}
+
+function buildDetail(id, card) {
+  const d = projectData[id];
+  if (!d) return null;
+  const row = document.createElement('div');
+  row.className = 'proj-detail-row';
+  row.dataset.for = id;
+  row.innerHTML = `
+    <div class="proj-detail-inner">
+      <h3 class="proj-detail-title">${d.title}</h3>
+      <div>
+        <p class="proj-hl-label">Overview</p>
+        <p class="proj-detail-desc">${d.desc}</p>
+      </div>
+      <div>
+        <p class="proj-hl-label">Highlights</p>
+        <ul class="proj-highlights">${d.highlights.map(h=>`<li>${h}</li>`).join('')}</ul>
+      </div>
+      ${d.links.length ? `<div class="proj-links">${d.links.map(l=>`<a href="${l.href}" target="_blank" class="btn ${l.type==='github'?'btn-ghost':'btn-solid'}">${linkIcon(l.type)} ${l.label}</a>`).join('')}</div>` : ''}
+      <div class="proj-close"><button onclick="closeDetail('${id}')">✕ Close</button></div>
+    </div>`;
+  return row;
+}
+
+let openId = null;
+
+function closeDetail(id) {
+  const row = document.querySelector(`.proj-detail-row[data-for="${id}"]`);
+  const card = document.querySelector(`.proj-card[data-id="${id}"]`);
+  if (row) row.classList.remove('visible');
+  if (card) card.classList.remove('open');
+  openId = null;
+}
+
+document.querySelectorAll('.proj-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const id = card.dataset.id;
+    // Close if already open
+    if (openId === id) { closeDetail(id); return; }
+    // Close any other open
+    if (openId) closeDetail(openId);
+    // Open this one
+    card.classList.add('open');
+    openId = id;
+    // Find or create detail row
+    let row = document.querySelector(`.proj-detail-row[data-for="${id}"]`);
+    if (!row) {
+      row = buildDetail(id, card);
+      card.after(row);
+    }
+    row.classList.add('visible');
+    // Scroll into view
+    setTimeout(() => row.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+  });
+});
+
+// ── Filter ──
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    if (openId) closeDetail(openId);
+    document.querySelectorAll('.proj-card').forEach(card => {
+      const cats = card.dataset.cats || '';
+      card.style.display = (filter === 'all' || cats.includes(filter)) ? '' : 'none';
+    });
+  });
+});
+
+// ── Reveal ──
+const reveals = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 60);
+  });
+}, { threshold: 0.05 });
+reveals.forEach(el => ro.observe(el));
+</script>
+</body>
+</html>
