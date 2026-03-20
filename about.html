@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Pranay Katyal</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ── About layout ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-left { position: sticky; top: calc(var(--nav-h) + 2rem); }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      background: var(--bg2);
+      margin-bottom: 1.5rem;
+    }
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-3);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+    }
+    .contact-block { display: flex; flex-direction: column; gap: 0.6rem; }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.85rem;
+      color: var(--text-2);
+    }
+    .contact-row svg { flex-shrink: 0; color: var(--purple); opacity: 0.8; }
+    .contact-row a { color: var(--text-2); transition: color 0.2s; }
+    .contact-row a:hover { color: var(--purple); }
+
+    .social-row {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    .social-icon {
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      color: var(--text-2);
+      transition: all 0.2s;
+      font-size: 0.85rem;
+    }
+    .social-icon:hover {
+      border-color: var(--purple);
+      color: var(--purple);
+      background: var(--purple-dim);
+    }
+
+    /* ── Bio ── */
+    .bio-text p {
+      color: var(--text-2);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+    }
+    .bio-text p:last-child { margin-bottom: 0; }
+    .bio-text strong { color: var(--text); font-weight: 500; }
+
+    /* ── Education ── */
+    .edu-item {
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .edu-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .edu-logo {
+      width: 42px; height: 42px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg2);
+      border: 1px solid var(--glass-border);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .edu-logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+    .edu-degree { font-weight: 600; font-size: 0.95rem; color: var(--text); }
+    .edu-school { font-size: 0.82rem; color: var(--text-2); margin-top: 0.1rem; }
+    .edu-meta {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .edu-meta span {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-3);
+      letter-spacing: 0.05em;
+    }
+    .edu-meta .gpa { color: var(--purple); }
+
+    .coursework-block {
+      margin-top: 0.75rem;
+      padding: 0.9rem 1rem;
+      background: rgba(167,139,250,0.04);
+      border-left: 2px solid var(--purple);
+      border-radius: 0 6px 6px 0;
+    }
+    .coursework-block p {
+      font-size: 0.78rem;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+    .coursework-block p + p { margin-top: 0.5rem; }
+    .cw-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 0.25rem;
+    }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .skill-group { }
+    .skill-group-title {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 0.6rem;
+    }
+
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-left { position: static; }
+      .about-photo { aspect-ratio: 4/3; max-width: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-name">Pranay <span>Katyal</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="experience.html">Experience</a>
+    <a href="publications.html">Publications</a>
+    <a href="projects.html">Projects</a>
+  </div>
+</nav>
+
+<div class="page-body">
+  <section class="section">
+    <div class="container">
+
+      <div class="about-grid">
+
+        <!-- ── Left column ── -->
+        <div class="about-left reveal">
+          <div class="about-photo">
+            <!-- Replace src with your actual photo: Assets/pranay_photo.jpg -->
+            <div class="about-photo-placeholder">photo coming soon</div>
+          </div>
+
+          <div class="contact-block">
+            <div class="contact-row">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:pranaykatyal2@gmail.com">pranaykatyal2@gmail.com</a>
+            </div>
+            <div class="contact-row">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:pkatyal@wpi.edu">pkatyal@wpi.edu</a>
+            </div>
+            <div class="contact-row">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.78-1.78a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>+1-774-519-2925</span>
+            </div>
+            <div class="contact-row">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Worcester, MA</span>
+            </div>
+          </div>
+
+          <div class="social-row">
+            <a href="https://github.com/pranaykatyal" target="_blank" class="social-icon" title="GitHub">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/pranay-katyal/" target="_blank" class="social-icon" title="LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://pranaykatyal.github.io" class="social-icon" title="Portfolio">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </a>
+            <a href="Pranay_Katyal_Robotics_CV.pdf" download class="social-icon" title="Download CV">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- ── Right column ── -->
+        <div>
+
+          <!-- Bio -->
+          <div class="reveal" style="margin-bottom: 3.5rem;">
+            <p class="section-label">About</p>
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">Robotics <em>Engineer</em></h2>
+            <div class="bio-text">
+              <p>I'm a Robotics Engineering graduate student at <strong>Worcester Polytechnic Institute</strong> specializing in autonomous multi-agent systems, advanced control theory, and deep learning for perception. My work spans the full stack — from Graph-Based Control Barrier Functions and distributed consensus protocols to optical flow-based navigation, UKF state estimation, and real-time neural network deployment on GPU hardware.</p>
+              <p>I'm comfortable across platforms including CrazyFlie quadrotors, Kinova Gen3, AWS DeepRacer, and Prophesee EVK4 event cameras, working primarily in <strong>ROS2, Python, and C++</strong>. Currently seeking full-time roles starting May 2026 in aerial robotics, autonomous vehicles, or multi-robot systems.</p>
+              <p>F-1 visa · OPT eligible June 2026 · H-1B sponsorship required long-term.</p>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div class="reveal" style="margin-bottom: 3.5rem;">
+            <p class="section-label">Education</p>
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">Academic <em>Background</em></h2>
+
+            <div class="glass-card edu-item">
+              <div class="edu-header">
+                <div class="edu-logo">
+                  <img src="Assets/wpi_logo.png" alt="WPI" onerror="this.parentElement.innerHTML='WPI'">
+                </div>
+                <div>
+                  <div class="edu-degree">M.S. Robotics Engineering</div>
+                  <div class="edu-school">Worcester Polytechnic Institute, Worcester MA</div>
+                </div>
+              </div>
+              <div class="edu-meta">
+                <span>Aug 2024 – May 2026</span>
+                <span class="gpa">GPA 3.77 / 4.0</span>
+              </div>
+              <div class="coursework-block">
+                <p class="cw-label">Completed</p>
+                <p>Foundation of Robotics (A), Robot Dynamics (A), Robot Control (B), Motion Planning (A), Multi-Robot Systems (A), Machine Learning for Robotics (A), Deep Learning (A), Hands-On Autonomous Aerial Vehicles (A), Directed Research (A), Capstone Project (A), Leadership (B)</p>
+                <p class="cw-label" style="margin-top:0.6rem;">Currently Pursuing</p>
+                <p>Computer Vision · Formal Safety Guarantees in Autonomous Robots</p>
+              </div>
+            </div>
+
+            <div class="glass-card edu-item">
+              <div class="edu-header">
+                <div class="edu-logo">
+                  <img src="Assets/cu_logo.png" alt="CU" onerror="this.parentElement.innerHTML='CU'">
+                </div>
+                <div>
+                  <div class="edu-degree">B.S. Mechatronics Engineering</div>
+                  <div class="edu-school">Chandigarh University, PB, India</div>
+                </div>
+              </div>
+              <div class="edu-meta">
+                <span>Jul 2019 – Jun 2023</span>
+                <span class="gpa">GPA 3.4 / 4.0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skills -->
+          <div class="reveal">
+            <p class="section-label">Skills</p>
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">Technical <em>Stack</em></h2>
+            <div class="skills-grid">
+              <div class="skill-group">
+                <p class="skill-group-title">Languages</p>
+                <div class="tag-row">
+                  <span class="tag">Python</span><span class="tag">C++</span><span class="tag">MATLAB</span><span class="tag">Bash</span><span class="tag">PLC Ladder</span>
+                </div>
+              </div>
+              <div class="skill-group">
+                <p class="skill-group-title">Frameworks & Tools</p>
+                <div class="tag-row">
+                  <span class="tag">ROS2</span><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">OpenCV</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">Gazebo</span><span class="tag">MuJoCo</span><span class="tag">OMPL</span><span class="tag">Simulink</span>
+                </div>
+              </div>
+              <div class="skill-group">
+                <p class="skill-group-title">Autonomy & Control</p>
+                <div class="tag-row">
+                  <span class="tag">GCBFs / CBFs</span><span class="tag">LQR / PID</span><span class="tag">UKF / EKF</span><span class="tag">RRT*</span><span class="tag">Min-Snap Trajectory</span><span class="tag">SLAM</span><span class="tag">Visual Servoing</span><span class="tag">Consensus Algorithms</span>
+                </div>
+              </div>
+              <div class="skill-group">
+                <p class="skill-group-title">ML & Vision</p>
+                <div class="tag-row">
+                  <span class="tag">RAFT Optical Flow</span><span class="tag">U-Net</span><span class="tag">ResNet</span><span class="tag">LSTM</span><span class="tag">Depth Estimation</span><span class="tag">Object Detection</span><span class="tag">Sensor Fusion</span>
+                </div>
+              </div>
+              <div class="skill-group">
+                <p class="skill-group-title">Platforms</p>
+                <div class="tag-row">
+                  <span class="tag">CrazyFlie 2.0</span><span class="tag">Kinova Gen3</span><span class="tag">OpenManipulatorX</span><span class="tag">AWS DeepRacer</span><span class="tag">Prophesee EVK4</span><span class="tag">Dynamixel</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>© 2026 Pranay Katyal · pranaykatyal.github.io</p>
+  </footer>
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => ro.observe(el));
+</script>
+</body>
+</html>
