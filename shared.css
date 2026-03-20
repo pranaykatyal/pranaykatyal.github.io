@@ -102,7 +102,7 @@ nav.site-nav {
   color: var(--text-3);
   line-height: 1;
 }
-.nav-name span { color: var(--purple); }
+.nav-name span { color: inherit; }
 .nav-links {
   display: flex;
   gap: 2.5rem;
