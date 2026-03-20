@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience — Pranay Katyal</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ── Timeline ── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--purple), transparent);
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem; top: 1.4rem;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--purple);
+      box-shadow: 0 0 0 3px var(--purple-dim);
+    }
+    .tl-card { padding: 1.75rem 2rem; }
+    .tl-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .tl-logo {
+      width: 38px; height: 38px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg2);
+      border: 1px solid var(--glass-border);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 0.6rem; color: var(--text-3);
+    }
+    .tl-logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+    .tl-title { font-weight: 600; font-size: 0.95rem; color: var(--text); }
+    .tl-org {
+      font-size: 0.82rem; color: var(--text-2); margin-top: 0.15rem;
+    }
+    .tl-org a { color: var(--purple); transition: opacity 0.2s; }
+    .tl-org a:hover { opacity: 0.75; }
+    .tl-date {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--text-3);
+      white-space: nowrap;
+      padding-top: 0.2rem;
+    }
+    .tl-bullets {
+      padding-left: 1.1rem;
+      margin-top: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .tl-bullets li {
+      font-size: 0.875rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      position: relative;
+    }
+    .tl-bullets li::before {
+      content: '·';
+      position: absolute;
+      left: -0.9rem;
+      color: var(--purple);
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-name">Pranay <span>Katyal</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="experience.html" class="active">Experience</a>
+    <a href="publications.html">Publications</a>
+    <a href="projects.html">Projects</a>
+  </div>
+</nav>
+
+<div class="page-body">
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Work</p>
+      <h2 class="section-title">Experience &amp; <em>Roles</em></h2>
+
+      <div class="timeline">
+
+        <div class="tl-item reveal">
+          <div class="glass-card tl-card">
+            <div class="tl-header">
+              <div class="tl-logo">
+                <img src="Assets/automata_logo.png" alt="Automata" onerror="this.parentElement.textContent='Lab'">
+              </div>
+              <div>
+                <div class="tl-title">Research Assistant — Multi-Robot Communication</div>
+                <div class="tl-org">
+                  <a href="https://wp.wpi.edu/automata/" target="_blank">Automata Lab</a>, WPI · Prof. Kevin Leahy
+                </div>
+              </div>
+              <span class="tl-date">Jan 2025 – Present</span>
+            </div>
+            <ul class="tl-bullets">
+              <li>Contributed to a research paper under submission on an optical communication system using Prophesee EVK4 event cameras and high-frequency LED signaling, achieving 95%+ decoding accuracy during motion and 7× faster processing over prior EKF-based methods.</li>
+              <li>Led hardware setup and integration of event camera sensors with ROS2; developed simulation frameworks, visualizations, and performance plots to validate system behavior across motion and lighting conditions.</li>
+              <li>Implemented tracking pipeline bug fixes and supported real-world testing of the transmitter-receiver system, contributing to reliability ahead of multi-agent deployment.</li>
+              <li>Integrated AWS DeepRacer with ROS2 Teleop and Nav2 packages for autonomous control and SLAM; employed Prophesee EVK4 event cameras for real-time perception resulting in smoother navigation and faster data exchange.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="glass-card tl-card">
+            <div class="tl-header">
+              <div class="tl-logo">
+                <img src="Assets/wpi_logo.png" alt="WPI" onerror="this.parentElement.textContent='WPI'">
+              </div>
+              <div>
+                <div class="tl-title">Grading Assistant — Multi-Robot Systems (RBE510)</div>
+                <div class="tl-org">Worcester Polytechnic Institute</div>
+              </div>
+              <span class="tl-date">Aug 2025 – Present</span>
+            </div>
+            <ul class="tl-bullets">
+              <li>Graded assignments using Python scripts; applied knowledge of IMU sensors and state estimation to evaluate graduate-level work.</li>
+              <li>Provided one-on-one tutoring on IMU sensor integration, UKF/EKF state estimation, and depth estimation using computer vision.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="glass-card tl-card">
+            <div class="tl-header">
+              <div class="tl-logo">
+                <img src="Assets/wpi_logo.png" alt="WPI" onerror="this.parentElement.textContent='WPI'">
+              </div>
+              <div>
+                <div class="tl-title">Graduate Assistant — Control Systems (RBE 3011)</div>
+                <div class="tl-org">Worcester Polytechnic Institute</div>
+              </div>
+              <span class="tl-date">Sep 2024 – Mar 2025</span>
+            </div>
+            <ul class="tl-bullets">
+              <li>Supported 60 students in mastering control systems concepts, conducting weekly MATLAB lab sessions covering signal processing and motion planning.</li>
+              <li>Delivered personalized guidance to ~15 students weekly, contributing to a class average increase from 75% to 90% on assessments.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="glass-card tl-card">
+            <div class="tl-header">
+              <div class="tl-logo">
+                <img src="Assets/wpi_logo.png" alt="WPI" onerror="this.parentElement.textContent='WPI'">
+              </div>
+              <div>
+                <div class="tl-title">Secretary — IEEE-RAS WPI Chapter</div>
+                <div class="tl-org">Worcester Polytechnic Institute</div>
+              </div>
+              <span class="tl-date">Jan 2025 – Present</span>
+            </div>
+            <ul class="tl-bullets">
+              <li>Coordinated robotics events, workshops, and technical talks to promote research and student engagement.</li>
+              <li>Managed communications between faculty, industry speakers, and 50+ student members.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>© 2026 Pranay Katyal · pranaykatyal.github.io</p>
+  </footer>
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100);
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => ro.observe(el));
+</script>
+</body>
+</html>
