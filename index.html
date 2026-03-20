@@ -74,8 +74,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to top, rgba(8,11,16,0.95) 0%, rgba(8,11,16,0.3) 60%, rgba(8,11,16,0.2) 100%),
-        linear-gradient(to left, rgba(8,11,16,0.7) 0%, transparent 60%);
+        linear-gradient(to top, rgba(8,11,16,0.75) 0%, rgba(8,11,16,0.1) 50%, rgba(8,11,16,0.05) 100%),
+        linear-gradient(to left, rgba(8,11,16,0.5) 0%, transparent 55%);
       z-index: 1;
     }
 
@@ -93,25 +93,29 @@
       text-transform: uppercase;
       color: var(--purple);
       margin-bottom: 1rem;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.8);
       opacity: 0;
       animation: fadeUp 0.8s var(--ease) 0.3s forwards;
     }
     .hero-name {
       font-family: var(--serif);
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      font-weight: 500;
-      line-height: 1.05;
-      color: var(--text);
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      font-weight: 600;
+      line-height: 1.0;
+      color: #ffffff;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
       margin-bottom: 1.25rem;
       opacity: 0;
       animation: fadeUp 0.9s var(--ease) 0.5s forwards;
     }
     .hero-desc {
       font-size: 1rem;
-      color: var(--text-2);
+      color: rgba(255,255,255,0.9);
       max-width: 480px;
       line-height: 1.75;
       margin-bottom: 2rem;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+      margin-left: auto;
       opacity: 0;
       animation: fadeUp 0.9s var(--ease) 0.7s forwards;
     }
