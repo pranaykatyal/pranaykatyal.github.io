@@ -12,9 +12,9 @@
   --glass:       rgba(255,255,255,0.04);
   --glass-border:rgba(255,255,255,0.08);
   --glass-hover: rgba(255,255,255,0.07);
-  --purple:      #a78bfa;
-  --purple-dim:  rgba(167,139,250,0.12);
-  --purple-glow: rgba(167,139,250,0.25);
+  --purple:      #c084fc;
+  --purple-dim:  rgba(192,132,252,0.15);
+  --purple-glow: rgba(192,132,252,0.35);
   --text:        #e8eaf0;
   --text-2:      #8b90a0;
   --text-3:      #545870;
@@ -110,7 +110,20 @@ nav.site-nav {
   transition: color 0.2s;
   position: relative;
 }
-.nav-links a::after {
+.nav-links a.nav-cv-btn {
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--purple);
+  border-radius: 6px;
+  color: var(--purple);
+  background: var(--purple-dim);
+  letter-spacing: 0.06em;
+  transition: all 0.2s;
+}
+.nav-links a.nav-cv-btn:hover {
+  background: rgba(167,139,250,0.2);
+  box-shadow: 0 0 12px var(--purple-glow);
+}
+.nav-links a.nav-cv-btn::after { display: none; }
   content: '';
   position: absolute;
   bottom: -4px; left: 0;
