@@ -426,9 +426,7 @@
 
         <div class="proj-card reveal" data-cats="aerial control" data-id="p13">
           <div class="proj-thumb">
-            <div class="proj-thumb-icon">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            </div>
+            <img src="images/crazyflie.png" alt="CrazyFlie 2.0 Quadrotor" onerror="this.style.display='none'">
           </div>
           <div class="proj-collapsed">
             <p class="proj-name">Quadrotor Controller Implementation (CrazyFlie 2.0)</p>
@@ -623,9 +621,11 @@ const projectData = {
   },
   p13: {
     title: 'Quadrotor Controller Implementation (CrazyFlie 2.0)',
-    desc: 'Designed and tuned PD and LQR controllers for the CrazyFlie 2.0 quadcopter using MATLAB, demonstrating 10-second path tracking for both controller designs.',
-    highlights: ['LQR 17.28% faster performance vs PD controllers', '10-second path tracking demonstrated', 'Enhanced control stability and precision'],
-    links: []
+    desc: 'Designed and compared PD and LQR controllers for the CrazyFlie 2.0 quadrotor in MATLAB for trajectory tracking in a restricted airspace. The PD controller used cascaded position and attitude loops with tuned gains; the LQR controller minimized a quadratic cost via an algebraic Riccati equation over a 12-state linearized model. Both were tested on circular and diamond-helix trajectories.',
+    highlights: ['LQR completed diamond trajectory in 7.95s vs 9.55s for PD — 17% faster with higher accuracy', 'LQR weights generalized across both trajectories; PD required per-trajectory gain retuning', 'PD exhibited notable descent error on diamond shape; LQR maintained stable tracking throughout'],
+    links: [
+      { label: 'View Report', href: 'Reports/RBE502_Report.pdf', type: 'report' },
+    ]
   },
   p14: {
     title: 'Benchmarking Advanced IK Algorithms (Kinova Gen3)',
