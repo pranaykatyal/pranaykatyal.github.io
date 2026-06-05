@@ -480,6 +480,20 @@
           </div>
         </div>
 
+        <div class="proj-card reveal" data-cats="control multi" data-id="p17">
+          <div class="proj-thumb">
+            <img src="images/safety_proj_gif.gif" alt="CBF Safe Navigation DeepRacer" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">Safety-Guaranteed Navigation via CBF-QP on Amazon DeepRacer</p>
+            <p class="proj-date">Mar 2025 – May 2025</p>
+            <div class="proj-tags-mini">
+              <span class="tag">CBF</span><span class="tag">ROS2</span><span class="tag">Nav2</span><span class="tag">LiDAR</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
       </div><!-- /projects-grid -->
     </div>
   </section>
@@ -644,6 +658,15 @@ const projectData = {
     highlights: ['Withstands static loads up to 1000g', 'Structural performance optimization via FEA in ANSYS', 'Validated across multiple real-world scenarios'],
     links: [
       { label: 'Watch Demo', href: 'https://youtu.be/EgwEzHInAQI?si=pmp6YYCwam5acXk2', type: 'video' },
+    ]
+  },
+  p17: {
+    title: 'Safety-Guaranteed Navigation via CBF-QP on Amazon DeepRacer (RBE 575)',
+    desc: 'Implemented a real-time Control Barrier Function (CBF) safety filter layered over ROS2 Nav2 on an Amazon DeepRacer fitted with a custom-mounted SICK TIM781S scanning LiDAR. Nav2 computes nominal velocity commands which are passed to a CBF-QP node that minimally modifies them to satisfy safety constraints before forwarding to actuators. Two CBF methods were implemented: (1) Point Cloud-Based CBF (De Sa et al.) — k=7 nearest LiDAR returns each generate a QP constraint enforcing minimum clearance δ=0.17m, running at 50 Hz; (2) Dynamic Parabolic CBF (Park et al.) — a state-dependent parabolic safety boundary in the Line-of-Sight frame handles a patrolling obstacle at 0.8 m/s, with numerically computed drift term Lfh to account for independent obstacle motion. Full pipeline ran in a Docker container with LiDAR odometry (RF2O), SLAM Toolbox, and Nav2.',
+    highlights: ['Static CBF prevented all wall collisions in simulation — robot never contacted the wall across all tested runs', 'DPCBF demonstrated intentional reversing: robot backed away to let patrol obstacle clear the gap before resuming approach', 'Static CBF validated on real hardware at 20 Hz — RViz2 confirmed safety bubble activation as obstacles entered detection range'],
+    links: [
+      { label: 'View Report', href: 'Reports/Safety_Guarantee_Project.pdf', type: 'report' },
+      { label: 'GitHub', href: 'https://github.com/pranaykatyal/safetybarrierondeepracer', type: 'github' },
     ]
   },
 };
