@@ -440,9 +440,7 @@
 
         <div class="proj-card reveal" data-cats="control" data-id="p14">
           <div class="proj-thumb">
-            <div class="proj-thumb-icon">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-            </div>
+            <img src="images/dynProjkingen3.png" alt="Kinova Gen3 IK Benchmarking" onerror="this.style.display='none'">
           </div>
           <div class="proj-collapsed">
             <p class="proj-name">Benchmarking Advanced IK Algorithms (Kinova Gen3)</p>
@@ -628,10 +626,12 @@ const projectData = {
     ]
   },
   p14: {
-    title: 'Benchmarking Advanced IK Algorithms (Kinova Gen3)',
-    desc: 'Implemented Product of Exponentials for forward kinematics and multiple IK algorithms in MATLAB. Conducted benchmark study of modern IK algorithms on a 6-DOF Kinova Gen3 arm with real-time VR headset control.',
-    highlights: ['SVDDLS, IDLS, PSO algorithm comparison', 'Led SVDDLS implementation translating research to code', 'Real-time VR headset control integration'],
-    links: []
+    title: 'Benchmarking IK Algorithms for VR-Controlled 6-DOF Robot (Kinova Gen3)',
+    desc: 'Team of 6 comparing four inverse kinematics algorithms — Newton-Raphson, Improved Damped Least Squares (I-DLS), SVD-Damped Least Squares (SVD-DLS), and Particle Swarm Optimization (PSO) — on a 6-DOF Kinova Gen3 arm. A Meta Quest 2 VR headset (via Unity + ROS TCP Connector) maps pitch/yaw gaze to end-effector x/y displacement in real time, triggering a unified benchmarking framework measuring computation time, cumulative joint-space distance, and weighted joint-angle changes.',
+    highlights: ['SVD-DLS outperformed all others in real-time teleoperation — best singularity robustness via dynamic damping factor tuned to manipulability measure ω', 'PSO was the only algorithm to produce feasible solutions under yaw-only (x-axis) constraints where analytical solvers failed entirely', 'I-DLS achieved the best joint-efficiency trade-off among deterministic methods; NR fastest but failed under poor initial guesses'],
+    links: [
+      { label: 'View Report', href: 'Reports/Dynamics_Final_Report.pdf', type: 'report' },
+    ]
   },
   p15: {
     title: 'Chance-Constrained RRT Motion Planning with OMPL',
