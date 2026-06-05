@@ -454,9 +454,7 @@
 
         <div class="proj-card reveal" data-cats="control" data-id="p15">
           <div class="proj-thumb">
-            <div class="proj-thumb-icon">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            </div>
+            <img src="images/car_path_animation_gif.gif" alt="CC-RRT Path Planning" onerror="this.style.display='none'">
           </div>
           <div class="proj-collapsed">
             <p class="proj-name">Chance-Constrained RRT Motion Planning (OMPL)</p>
@@ -634,10 +632,13 @@ const projectData = {
     ]
   },
   p15: {
-    title: 'Chance-Constrained RRT Motion Planning with OMPL',
-    desc: 'Integrated a Chance-Constrained RRT algorithm with the Open Motion Planning Library (OMPL) in C++ for robust path planning under probabilistic safety constraints.',
-    highlights: ['<1 second planning times under varying probabilistic constraints', 'Docker for fully reproducible development', 'Led core algorithm development + OMPL integration'],
-    links: []
+    title: 'Chance-Constrained RRT Motion Planning with OMPL (RBE 550)',
+    desc: 'Implemented CC-RRT (Luders et al.) in C++ within the Open Motion Planning Library (OMPL), extending standard RRT with Gaussian belief propagation and fast probabilistic collision checking. Each tree node tracks a mean–covariance pair via Kalman-filter prediction; edges are accepted only if Pr(collision) ≤ 1 − p_safe, computed analytically via Mahalanobis distance to obstacle circumscribed circles. Features risk-biased node selection (deltaMax heuristic), branch-and-bound pruning, and adaptive process noise scaled by obstacle proximity. Deployed and benchmarked in a 7-obstacle cluttered 2D workspace with Docker for full reproducibility.',
+    highlights: ['100% success rate across all p_safe thresholds (0.5–0.99) over 10 trials each in cluttered static environment', 'Path duration 0.734–1.029s with no monotonic trade-off — adaptive risk-biased exploration balances safety and efficiency', '>85% success rate maintained in dynamic obstacle trials (v_obs < 0.3 m/s) via real-time re-planning'],
+    links: [
+      { label: 'View Report', href: 'Reports/CCRRT_Report.pdf', type: 'report' },
+      { label: 'View Slides', href: 'Reports/CC_RRT_PPT.pdf', type: 'report' },
+    ]
   },
   p16: {
     title: 'Design and Testing of Robotic Dog (SPOT)',
