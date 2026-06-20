@@ -284,6 +284,20 @@
           </div>
         </div>
 
+        <div class="proj-card reveal" data-cats="perception multi" data-id="p18">
+          <div class="proj-thumb">
+            <img src="images/sightlines_gif.gif" alt="SightLine: AASHTO Sight-Triangle Audit" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-collapsed">
+            <p class="proj-name">SightLine: Automated AASHTO Sight-Triangle Audit</p>
+            <p class="proj-date">Cyvl Hackathon 2026 · 1st Place</p>
+            <div class="proj-tags-mini">
+              <span class="tag">LiDAR</span><span class="tag">GeoJSON</span><span class="tag">Three.js</span><span class="tag">MapLibre</span>
+            </div>
+            <p class="proj-expand-hint"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg> Details</p>
+          </div>
+        </div>
+
         <div class="proj-card reveal" data-cats="multi control" data-id="p2">
           <div class="proj-thumb">
             <img src="images/capstone.png" alt="Multi-Agent Formation" onerror="this.style.display='none'">
@@ -670,12 +684,22 @@ const projectData = {
       { label: 'GitHub', href: 'https://github.com/pranaykatyal/safetybarrierondeepracer', type: 'github' },
     ]
   },
+  p18: {
+    title: 'SightLine: Automated AASHTO Sight-Triangle Audit',
+    desc: 'Built at Cyvl Hackathon 2026 (Somerville, MA) with a 4-person team — won 1st place. SightLine runs the AASHTO/FDOT clear-sight-triangle check on every stop-controlled intersection approach in Somerville using Cyvl\'s existing LiDAR, centerline, and stop-sign/stop-bar inventory — no new survey needed. The pipeline anchors each driver decision point on the real painted stop bar, builds the AASHTO sight triangle along actual cross-road geometry, triages tree/canopy obstructions, joins MassDOT crash records to rank corners by a blindness × crash-relevance score, and renders the top corners\' raw Cyvl LiDAR point clouds with the sight triangle as translucent 3D planes — the red points are literally the photons blocking the driver\'s view. Led the major system integration, built the interactive map layer correlating MassDOT crash data with stop-sign/stop-bar inventory, and built the 3D LiDAR intersection visualizer in Three.js.',
+    highlights: ['Won 1st place at Cyvl Hackathon 2026', 'Screened 1,187 stop-controlled approaches citywide; built 1,185 AASHTO sight triangles, 709 (60%) anchored on a real painted stop bar', 'Joined 630 angle/intersection MassDOT crashes against sight-triangle geometry — 19 of 54 high-confidence obstructed corners had a prior crash', 'Built per-corner 3D LiDAR viewer (Three.js) rendering raw point clouds with AASHTO sight-triangle planes and red-highlighted obstructing points for the top 6 ranked corners'],
+    links: [
+      { label: 'Live Demo', href: 'https://sightline-cyvl.vercel.app/', type: 'demo' },
+      { label: 'GitHub', href: 'https://github.com/shibuwu/cyvl_hack_2026', type: 'github' },
+    ]
+  },
 };
 
 // ── Link icon helpers ──
 function linkIcon(type) {
   if (type === 'github') return `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`;
   if (type === 'video') return `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
+  if (type === 'demo') return `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`;
   return `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`;
 }
 
